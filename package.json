@@ -1,0 +1,13 @@
+{
+    "name": "cordova-ng-boilerplate",
+    "version": "1.0.0",
+    "description": "Configurar um aplicativo Cordova com Angularjs do zero pode ser chato, use esse projeto como template para startar seu app.",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "ecosystem:cordova"
+    ],
+    "author": "Diogo Machado",
+    "license": "Apache-2.0"
+}
