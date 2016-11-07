@@ -4,6 +4,10 @@
     function initCordova(){
         document.addEventListener("deviceready", function () {
             console.info("Cordova inicializado com sucesso");
+
+            var plataforma = device.platform;
+            $rootScope.device = platforma.toLowerCase();
+
         }, false);
     }
 
@@ -19,14 +23,13 @@
         })
         .otherwise ({ redirectTo: '/' });
     })
-    .run(function(){
+    .run(function($rootScope){
 
         initCordova();
 
         /*
             O run é executado, após carregar o angular e as rotas, no run fazemos configurações iniciais
         */
-
     });
 
 })();

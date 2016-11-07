@@ -18,13 +18,237 @@ body {
     -webkit-user-select: none;
 }
 
-.header{
-   padding: .5em .8em;
-   background: #3949AB;
-   color: white;
-   margin-bottom: .5em;
+@font-face {
+    font-family: 'Roboto-Regular';
+    src:url('../fonts/Roboto-Regular.ttf');
 }
 
-.header-title{
-   font-size: 1em;
+@font-face {
+    font-family: 'Roboto-Medium';
+    src:url('../fonts/Roboto-Medium.ttf');
+}
+
+/*
+Tipografia
+*/
+.Roboto-Regular{
+    font-family: 'Roboto-Regular';
+}
+
+.Roboto-Medium{
+    font-family: 'Roboto-Medium';
+}
+
+/* TODO: Se basear no guideline do Android */
+.content{
+    padding: 5%;
+    display: flex;
+    height: 100%;
+}
+
+.content-center{
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+Toolbar
+*/
+
+.toolbar{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    background: #3949AB;
+    height: 44px;
+    color: white;
+}
+
+
+.toolbar.android{
+    box-shadow: 0 1px 8px rgba(0,0,0,.3);
+}
+
+.toolbar-transparente{
+    background: none;
+    box-shadow: none!important;
+}
+.toolbar.ios{}
+
+.toolbar button{
+    position: relative;
+    background: none;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    font-size: 1.45em;
+    line-height: 0;
+    display: inline-block;
+    overflow: hidden;
+    outline: none;
+    color: #1A237E;
+}
+
+.toolbar section{
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    height: 100%;
+}
+
+.toolbar section.title{
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    width: 90%;
+}
+
+.color-title-home{
+  color: #795548;
+}
+
+.toolbar section button span.text{
+     display: none;
+}
+
+
+.toolbar section button.ios{
+    font-size: .8em;
+}
+
+.toolbar section i.ios{
+    display: none;
+}
+
+.toolbar section button span.text.ios{
+    display: block;
+    padding: 1rem 0;
+}
+
+.toolbar section i.ios:before{
+    content: "";
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+
+    body{
+        font-size: 18px;
+    }
+
+    .toolbar{
+        height: 50px;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 3){
+    body{
+        font-size: 20px;
+    }
+
+    .toolbar{
+        height: 55px;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 3.5){
+    body{
+        font-size: 22px;
+    }
+
+    .toolbar{
+        height: 58px;
+    }
+}
+
+/*
+Cards
+*/
+.card{
+    background: white;
+    border-radius: 2.5px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.35);
+}
+
+.card.ios{
+    background: rgba(255,255,255,0.93);
+}
+
+.card-body, .card-footer{
+    padding: 5%;
+}
+
+.card-footer button{
+    background: none;
+    border: 0;
+    text-transform: uppercase;
+    color: #FFC107;
+}
+
+/*
+Extra
+*/
+.background{
+    position: fixed;
+    background: url(../img/bg-home.jpeg) no-repeat;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-size: cover;
+    z-index: -1;
+    background-position: 50% 50%;
+}
+
+.ultima-compra-legenda{
+    padding: 0;
+    font-size: .76em;
+    color: #9E9E9E;
+    margin-bottom: 0;
+}
+
+.ultima-compra-titulo{
+    padding: 0;
+    font-size: 1.15em;
+    color: #212121;
+    margin-top: 0;
+}
+
+/*
+Icons
+*/
+@font-face {
+  font-family: 'freeburguer';
+  src:
+    url('../fonts/freeburguer.ttf?c88toi') format('truetype'),
+    url('../fonts/freeburguer.woff?c88toi') format('woff'),
+    url('../fonts/freeburguer.svg?c88toi#freeburguer') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'freeburguer' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.exit:before {
+  content: "\e879";
+}
+
+.qrcode:before {
+  content: "\e900";
 }

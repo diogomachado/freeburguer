@@ -1,3 +1,25 @@
-<header class="header">
-  <h1 class="header-title">Freeburguer</h1>
-</header>
+<div class="background">
+    <header class="toolbar toolbar-transparente {{ device }}">
+        <section class="title color-title-home">
+            Freeburguer
+        </section>
+        <section>
+            <button ng-click="Home.scanear()">
+                <i class="qrcode"></i>
+                <span class="text">Fechar</span>
+            </button>
+        </section>
+    </header>
+
+    <div class="content content-center">
+        <div class="card">
+            <div class="card-body">
+                <p class="ultima-compra-legenda">Última compra</p>
+                <p class="ultima-compra-titulo">Hamburgueria</p>
+            </div>
+            <div class="card-footer">
+                <button>Repetir</button>
+            </div>
+        </div>
+    </div>
+</div>
