@@ -11,6 +11,15 @@
         }, false);
     }
 
+    function ajustarConteudo(){
+        console.info("Ajustando...");
+        var toolbar = document.getElementsByClassName('toolbar');
+        var height = toolbar[0].offsetHeight;
+
+        var content = document.getElementsByClassName('content');
+        content[0].style.paddingTop = height + 'px';
+    }
+
     angular.module('app',['ngRoute', 'ngCordova'])
     .config(function($routeProvider)
     {
@@ -21,15 +30,21 @@
             controller   : 'HomeController',
             controllerAs : 'Home'
         })
+        .when('/pedido', {
+            templateUrl  : 'app/views/pedido.html',
+        })
+        .when('/checkout', {
+            templateUrl  : 'app/views/checkout.html',
+        })
         .otherwise ({ redirectTo: '/' });
     })
-    .run(function($rootScope){
+    .run(function($rootScope, $timeout){
 
         initCordova();
 
-        /*
-            O run é executado, após carregar o angular e as rotas, no run fazemos configurações iniciais
-        */
+        $timeout(function(){
+            ajustarConteudo();
+        }, 150);
     });
 
 })();

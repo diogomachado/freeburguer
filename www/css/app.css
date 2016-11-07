@@ -16,6 +16,7 @@ body {
     -webkit-text-size-adjust: none;
     /* prevent copy paste, to allow, change 'none' to 'text' */
     -webkit-user-select: none;
+    background: #FAFAFA;
 }
 
 @font-face {
@@ -28,6 +29,11 @@ body {
     src:url('../fonts/Roboto-Medium.ttf');
 }
 
+@font-face {
+    font-family: 'SF-UI-Display-Regular';
+    src:url('../fonts/SF-UI-Display-Regular.otf');
+}
+
 /*
 Tipografia
 */
@@ -37,6 +43,10 @@ Tipografia
 
 .Roboto-Medium{
     font-family: 'Roboto-Medium';
+}
+
+.SF-UI-Display-Regular{
+    font-family: 'SF-UI-Display-Regular';
 }
 
 /* TODO: Se basear no guideline do Android */
