@@ -228,6 +228,80 @@ Extra
 }
 
 /*
+Checkbox
+*/
+.checkbox-wrapper{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked{
+    display: none;
+}
+
+.checkbox{
+    position: relative;
+    padding: 12px;
+    background: url(../img/check_box_blank.svg);
+    font-size: 0;
+}
+
+.checkbox.checked{
+    background: url(../img/check_box.svg);
+}
+
+.checkbox-wrapper label{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 2.5% 0;
+    border-bottom: 1px #E3E3E3 solid;
+}
+
+.titulo-secao{
+    font-size: 15px;
+    color: #95989A;
+    padding: 5% 0;
+}
+
+.checkbox-wrapper p{
+    margin: 0;
+    padding: 0;
+}
+
+.item-pedido-nome{
+    font-size: 1em;
+    color: #212121;
+    margin-bottom: 15px;
+}
+
+.itens-pedido{
+    font-size: .7em;
+    color: #95989A;
+}
+
+.pedido-informacao, .pedido-checkbox{
+    display: inline-block;
+}
+
+.pedido-informacao{
+    width: 85%;
+}
+
+.pedido-checkbox{
+    width: 15%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    float: right;
+    vertical-align: middle;
+}
+
+
+/*
 Icons
 */
 @font-face {

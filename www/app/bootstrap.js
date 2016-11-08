@@ -42,6 +42,9 @@
 
         initCordova();
 
+        // Simular
+        $rootScope.device = 'android';
+
         $timeout(function(){
             ajustarConteudo();
         }, 150);
