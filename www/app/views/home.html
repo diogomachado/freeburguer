@@ -1,11 +1,11 @@
 <div class="background">
-    <header class="toolbar toolbar-transparente {{ device }}">
+    <header class="toolbar toolbar-home toolbar-transparente {{ device }}">
         <section class="title color-title-home">
             Freeburguer
         </section>
         <section>
             <button ng-click="Home.scanear()">
-                <i class="qrcode"></i>
+                <i class="qrcode color-button-home"></i>
                 <span class="text">Fechar</span>
             </button>
         </section>
@@ -18,7 +18,7 @@
                 <p class="ultima-compra-titulo">Hamburgueria</p>
             </div>
             <div class="card-footer">
-                <button>Repetir</button>
+                <a href="#/pedido">Repetir</a>
             </div>
         </div>
     </div>

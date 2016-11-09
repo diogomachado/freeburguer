@@ -20,6 +20,11 @@ body {
 }
 
 @font-face {
+    font-family: 'Rockwell-Bold';
+    src:url('../fonts/rockwell-bold.ttf');
+}
+
+@font-face {
     font-family: 'Roboto-Regular';
     src:url('../fonts/Roboto-Regular.ttf');
 }
@@ -51,7 +56,7 @@ Tipografia
 
 /* TODO: Se basear no guideline do Android */
 .content{
-    padding: 5%;
+    padding: 3%;
     display: flex;
     height: 100%;
 }
@@ -69,14 +74,13 @@ Toolbar
     position: fixed;
     width: 100%;
     top: 0;
-    padding: 0 5%;
     display: flex;
     align-items: center;
     background: #3949AB;
     height: 44px;
     color: white;
+    z-index: 25;
 }
-
 
 .toolbar.android{
     box-shadow: 0 1px 8px rgba(0,0,0,.3);
@@ -86,7 +90,6 @@ Toolbar
     background: none;
     box-shadow: none!important;
 }
-.toolbar.ios{}
 
 .toolbar button{
     position: relative;
@@ -116,31 +119,78 @@ Toolbar
     width: 90%;
 }
 
+section.buttons{
+    width: 18%;
+}
+
+/* No android, secoes de botoes vazias nao ocupam espaco */
+.toolbar.android section.buttons:empty{
+    display: none;
+}
+
+/* No android, quando a secao de botao anterior for vazia, retiro o padding*/
+/* .toolbar.android section.buttons:nth-child(1):empty + .title{
+    padding-left: 0;
+} */
+
+.toolbar.android section.buttons:nth-child(1) + .title{
+    padding-left: 3%;
+}
+
+.title.ios{
+    justify-content: center;
+    padding: 0;
+}
+
+/*
+Customizacoes apenas da toolbar home
+*/
 .color-title-home{
   color: #795548;
 }
+
+.color-button-home{
+    color: rgba(255,255,255,0.8);
+}
+
+.toolbar-home{
+    padding: 0 5%;
+}
+
+.toolbar-home .title{
+    font-family: 'Rockwell-Bold';
+    text-transform: uppercase;
+}
+
+/*
+Comportamento no iOS - Icones somem, descricao aparecem
+*/
 
 .toolbar section button span.text{
      display: none;
 }
 
-
 .toolbar section button.ios{
     font-size: .8em;
 }
 
-.toolbar section i.ios{
+.toolbar section button.ios i{
     display: none;
 }
 
-.toolbar section button span.text.ios{
+.toolbar section button.ios span.text{
     display: block;
     padding: 1rem 0;
+    color: rgba(255,255,255, 0.85);
 }
 
 .toolbar section i.ios:before{
     content: "";
 }
+
+/*
+Tratamento diferenciado da altura do toolbar de acordo com DPR
+*/
 
 @media screen and (-webkit-min-device-pixel-ratio: 2){
 
@@ -191,11 +241,12 @@ Cards
     padding: 5%;
 }
 
-.card-footer button{
+.card-footer button, .card-footer a{
     background: none;
     border: 0;
     text-transform: uppercase;
     color: #FFC107;
+    text-decoration: none;
 }
 
 /*
@@ -237,22 +288,6 @@ Checkbox
     width: 100%;
 }
 
-input[type="checkbox"]:not(:checked),
-input[type="checkbox"]:checked{
-    display: none;
-}
-
-.checkbox{
-    position: relative;
-    padding: 12px;
-    background: url(../img/check_box_blank.svg);
-    font-size: 0;
-}
-
-.checkbox.checked{
-    background: url(../img/check_box.svg);
-}
-
 .checkbox-wrapper label{
     position: relative;
     display: block;
@@ -261,38 +296,49 @@ input[type="checkbox"]:checked{
     border-bottom: 1px #E3E3E3 solid;
 }
 
+.checkbox-item input[type="checkbox"]:not(:checked),
+.checkbox-item input[type="checkbox"]:checked{
+    display: none;
+}
+
+.checkbox-item input[type="checkbox"] + span{
+    position: relative;
+    padding: 12px;
+    font-size: 0;
+}
+
+.checkbox-item input[type="checkbox"]:not(:checked) + span.android{
+    background: url(../img/check_box_blank.svg);
+}
+
+.checkbox-item input[type="checkbox"]:checked + span.android{
+    background: url(../img/check_box.svg) no-repeat;
+}
+
+.checkbox-item input[type="checkbox"]:not(:checked) + span.ios{
+    background: none;
+}
+
+.checkbox-item input[type="checkbox"]:checked + span.ios{
+    background: url(../img/checkbox-ios.svg) no-repeat;
+}
+
 .titulo-secao{
     font-size: 15px;
     color: #95989A;
     padding: 5% 0;
 }
 
-.checkbox-wrapper p{
-    margin: 0;
-    padding: 0;
-}
-
-.item-pedido-nome{
-    font-size: 1em;
-    color: #212121;
-    margin-bottom: 15px;
-}
-
-.itens-pedido{
-    font-size: .7em;
-    color: #95989A;
-}
-
-.pedido-informacao, .pedido-checkbox{
+.checkbox-info,
+.checkbox-input{
     display: inline-block;
 }
 
-.pedido-informacao{
+.checkbox-info{
     width: 85%;
 }
 
-.pedido-checkbox{
-    width: 15%;
+.checkbox-input{
     height: 100%;
     text-align: center;
     position: relative;
@@ -300,6 +346,17 @@ input[type="checkbox"]:checked{
     vertical-align: middle;
 }
 
+.checkbox-info-titulo{
+    font-size: 1em;
+    color: #212121;
+    margin: 0 0 5px 0;
+}
+
+.checkbox-info-descricao{
+    font-size: .7em;
+    color: #95989A;
+    margin: 0;
+}
 
 /*
 Icons
@@ -307,9 +364,9 @@ Icons
 @font-face {
   font-family: 'freeburguer';
   src:
-    url('../fonts/freeburguer.ttf?c88toi') format('truetype'),
-    url('../fonts/freeburguer.woff?c88toi') format('woff'),
-    url('../fonts/freeburguer.svg?c88toi#freeburguer') format('svg');
+    url('../fonts/freeburguer.ttf?pek8mg') format('truetype'),
+    url('../fonts/freeburguer.woff?pek8mg') format('woff'),
+    url('../fonts/freeburguer.svg?pek8mg#freeburguer') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -329,10 +386,15 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.arrow_back:before {
+  content: "\e5c4";
+}
+.close:before {
+  content: "\e5cd";
+}
 .exit:before {
   content: "\e879";
 }
-
 .qrcode:before {
   content: "\e900";
 }
