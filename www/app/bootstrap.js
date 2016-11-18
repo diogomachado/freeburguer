@@ -23,14 +23,14 @@
     })
     .run(function($rootScope){
 
-        $rootScope.device = "android";
+        $rootScope.device = "ios";
 
         // Inicializa o cordova
         document.addEventListener("deviceready", function () {
             console.info("Cordova inicializado com sucesso.");
 
             var plataforma = device.platform;
-            $rootScope.device = plataforma.toLowerCase();
+            // $rootScope.device = plataforma.toLowerCase();
         }, false);
     });
 
