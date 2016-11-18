@@ -4,7 +4,6 @@
     angular.module('app',['ngRoute', 'ngCordova'])
     .config(function($routeProvider)
     {
-        // Rotas
         $routeProvider
         .when('/', {
             templateUrl  : 'app/views/home.html',
@@ -18,20 +17,16 @@
         })
         .when('/checkout', {
             templateUrl  : 'app/views/checkout.html',
+            controller   : 'CheckoutController',
+            controllerAs : 'Checkout'
         })
         .otherwise ({ redirectTo: '/' });
     })
     .run(function($rootScope){
 
-        $rootScope.device = "ios";
-
-        // Inicializa o cordova
         document.addEventListener("deviceready", function () {
-            console.info("Cordova inicializado com sucesso.");
-
             var plataforma = device.platform;
-            // $rootScope.device = plataforma.toLowerCase();
+            $rootScope.device = plataforma.toLowerCase();
         }, false);
     });
-
 })();
