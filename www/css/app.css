@@ -21,22 +21,38 @@ body {
 
 @font-face {
     font-family: 'Rockwell-Bold';
-    src:url('../fonts/rockwell-bold.ttf');
+    src: url('../fonts/rockwell-bold-webfont.eot');
+    src: url('../fonts/rockwell-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rockwell-bold-webfont.woff2') format('woff2'),
+         url('../fonts/rockwell-bold-webfont.woff') format('woff'),
+         url('../fonts/rockwell-bold-webfont.ttf') format('truetype'),
+         url('../fonts/rockwell-bold-webfont.svg#Rockwell-Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'Roboto-Regular';
-    src:url('../fonts/Roboto-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'Roboto-Medium';
-    src:url('../fonts/Roboto-Medium.ttf');
+    src: url('../fonts/roboto-regular-webfont.eot');
+    src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-regular-webfont.woff') format('woff'),
+         url('../fonts/roboto-regular-webfont.ttf') format('truetype'),
+         url('../fonts/roboto-regular-webfont.svg#Roboto-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'SF-UI-Display-Regular';
-    src:url('../fonts/SF-UI-Display-Regular.otf');
+    src: url('../fonts/sf-ui-display-regular-webfont.eot');
+    src: url('../fonts/sf-ui-display-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/sf-ui-display-regular-webfont.woff2') format('woff2'),
+         url('../fonts/sf-ui-display-regular-webfont.woff') format('woff'),
+         url('../fonts/sf-ui-display-regular-webfont.ttf') format('truetype'),
+         url('../fonts/sf-ui-display-regular-webfont.svg#SF-UI-Display-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /*
@@ -44,10 +60,6 @@ Tipografia
 */
 .Roboto-Regular{
     font-family: 'Roboto-Regular';
-}
-
-.Roboto-Medium{
-    font-family: 'Roboto-Medium';
 }
 
 .SF-UI-Display-Regular{
