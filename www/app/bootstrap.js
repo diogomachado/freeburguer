@@ -24,6 +24,8 @@
     })
     .run(function($rootScope){
 
+        $rootScope.device = 'android';
+
         document.addEventListener("deviceready", function () {
             var plataforma = device.platform;
             $rootScope.device = plataforma.toLowerCase();

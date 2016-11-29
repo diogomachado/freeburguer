@@ -16,242 +16,33 @@
 <div class="content">
 
     <ul class="checkbox-wrapper">
-        <li class="titulo-secao">
+        <li class="titulo-secao {{ device }}">
             Cardápio
         </li>
 
-        <li class="checkbox-item">
+        <li class="checkbox-item" ng-repeat="(key, lanche) in itens">
             <label>
                 <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
+                    <p class="checkbox-info-titulo">{{ lanche.nome }}</p>
+                    <p class="checkbox-info-descricao">{{ lanche.ingredientes }}</p>
                 </div>
                 <div class="checkbox-input">
-                    <input type="checkbox">
+                    <input type="checkbox" ng-model="itens[key].selecionado">
                     <span class="{{ device }}"></span>
                 </div>
             </label>
         </li>
 
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
-
-        <li class="checkbox-item">
-            <label>
-                <div class="checkbox-info">
-                    <p class="checkbox-info-titulo">X-Bacon</p>
-                    <p class="checkbox-info-descricao">Pão, Carne, Bacon, Milho e Salada</p>
-                </div>
-                <div class="checkbox-input">
-                    <input type="checkbox">
-                    <span class="{{ device }}"></span>
-                </div>
-            </label>
-        </li>
     </ul>
 </div>
 
-<footer>
-
-    <div class="total-wrapper">
+<footer class="footer-pedido" ng-show="exibirResumoPedido">
+    <div class="footer-pedido-detalhes">
         <p>Total</p>
-        <p>R$ 90,00</p>
+        <p>{{ valorTotalPedido | currency }}</p>
     </div>
 
-    <div>
-        <button>Fechar</button>
+    <div class="footer-pedido-botoes">
+        <button type="button" class="{{ device }}">Fechar pedido</button>
     </div>
-
 </footer>
