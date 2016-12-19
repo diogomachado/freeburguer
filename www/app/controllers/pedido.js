@@ -6,9 +6,9 @@
         .controller('PedidoController', PedidoController);
 
     // Dependencias
-    PedidoController.$injector = ['$scope', '$timeout'];
+    PedidoController.$injector = ['$scope', '$timeout', '$location'];
 
-    function PedidoController($scope, $timeout){
+    function PedidoController($scope, $timeout, $location){
 
         // Nos ajuda a controlar a view
         $scope.exibirResumoPedido = false;
@@ -83,7 +83,7 @@
         }
 
         this.fecharPedido = function(){
-            // TODO
+            $location.path('checkout');
         }
     }
 

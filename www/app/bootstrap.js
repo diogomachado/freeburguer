@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('app',['ngRoute', 'ngCordova'])
+    angular.module('app',['ngRoute', 'ngCordova', 'ngAnimate'])
     .config(function($routeProvider)
     {
         $routeProvider
@@ -22,7 +22,7 @@
         })
         .otherwise ({ redirectTo: '/' });
     })
-    .run(function($rootScope){
+    .run(function($rootScope, $location){
 
         $rootScope.device = 'android';
 
@@ -30,5 +30,24 @@
             var plataforma = device.platform;
             $rootScope.device = plataforma.toLowerCase();
         }, false);
+
+
+        $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+
+            $rootScope.transitionClass = "";
+
+            var url_corrente = current.$$route.originalPath;
+
+            if (url_corrente == '/'){
+
+                if (previous){
+                    $rootScope.transitionClass = "back";
+                }else{
+                    $rootScope.transitionClass = "";
+                }
+            }else{
+                $rootScope.transitionClass = "slide";
+            }
+        });
     });
 })();

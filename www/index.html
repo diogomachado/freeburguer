@@ -20,12 +20,13 @@
         <title>Boilerplate Cordova</title>
     </head>
     <body ng-app="app">
-        <div ng-view ng-class="{'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}"></div>
+        <div ng-view ng-class="{'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}" class="{{ transitionClass }}"></div>
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="bower_components/angular-i18n/angular-locale_pt-br.js"></script>
         <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+        <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
         <script type="text/javascript" src="bower_components/ngCordova/dist/ng-cordova.js"></script>
         <script type="text/javascript" src="app/bootstrap.js"></script>
         <script type="text/javascript" src="app/controllers/home.js"></script>
