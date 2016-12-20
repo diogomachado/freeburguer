@@ -506,26 +506,39 @@ Transicoes
     top: 0;
 }
 
-.slide.ng-enter, .back.ng-enter { z-index: 8888; }
-.slide.ng-leave, .back.ng-leave { z-index: 9999; }
+.slide.ng-enter,
+.back.ng-enter {
+    z-index: 8888;
+}
+
+.slide.ng-leave,
+.back.ng-leave {
+    z-index: 9999;
+}
 
 .slide.ng-enter,
-.back.ng-enter{
-    -webkit-transition: all 300ms ease;
-    transition: all 300ms ease;
+.back.ng-enter,
+.slide.ng-leave,
+.back.ng-leave{
+    -webkit-transition: all 5s ease;
+    transition: all 5s ease;
 }
+
 .slide.ng-enter {
     transform: translateX(-100%);
 }
+
 .slide.ng-enter-active {
     transform: translateX(0%);
 }
+
 .slide.ng-leave {
-    transform: translateX(100%);
-    opacity: 0.5;
-}
-.slide.ng-leave-active {
     transform: translateX(0%);
+    opacity: 1;
+}
+
+.slide.ng-leave-active {
+    transform: translateX(100%);
     opacity: 0;
 }
 
