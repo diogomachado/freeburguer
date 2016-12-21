@@ -20,7 +20,7 @@
         <title>Boilerplate Cordova</title>
     </head>
     <body ng-app="app">
-        <div ng-view ng-class="{'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}" class="{{ transitionClass }}"></div>
+        <div ng-view ng-class="{slide: path !== '/', home: path === '/', 'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}"></div>
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>

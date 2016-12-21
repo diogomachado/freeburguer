@@ -13,10 +13,6 @@
         // Nos ajuda a controlar a view
         $scope.exibirResumoPedido = false;
 
-        $timeout(function(){
-            ajustarConteudo();
-        }, 200);
-
         // Lanches
         // TODO: Virão do firebase
         $scope.itens = [
@@ -54,33 +50,9 @@
                 }
             });
 
-            if (selecionados > 0){
-                $scope.exibirResumoPedido = true;
-
-                $timeout(function(){
-                    ajustarRodape();
-                }, 200);
-            }else{
-                $scope.exibirResumoPedido = false;
-            }
+            $scope.exibirResumoPedido = (selecionados > 0) ? true : false;
 
         }, true);
-
-        function ajustarConteudo(){
-            var toolbar = document.getElementsByClassName('toolbar');
-            var height  = toolbar[0].offsetHeight;
-            var content = document.getElementsByClassName('content');
-
-            content[0].style.paddingTop = height + 'px';
-        }
-
-        function ajustarRodape(){
-            var footer  = document.getElementsByClassName('footer-pedido');
-            var height  = footer[0].offsetHeight;
-            var content = document.getElementsByClassName('content');
-
-            content[0].style.paddingBottom = height + 'px';
-        }
 
         this.fecharPedido = function(){
             $location.path('checkout');

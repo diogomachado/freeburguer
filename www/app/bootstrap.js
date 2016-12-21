@@ -31,23 +31,8 @@
             $rootScope.device = plataforma.toLowerCase();
         }, false);
 
-
-        $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
-
-            $rootScope.transitionClass = "";
-
-            var url_corrente = current.$$route.originalPath;
-
-            if (url_corrente == '/'){
-
-                if (previous){
-                    $rootScope.transitionClass = "back";
-                }else{
-                    $rootScope.transitionClass = "";
-                }
-            }else{
-                $rootScope.transitionClass = "slide";
-            }
+        $rootScope.$on("$locationChangeStart", function (event, next, current) {
+            $rootScope.path = $location.path();
         });
     });
 })();
