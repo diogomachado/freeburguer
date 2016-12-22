@@ -549,3 +549,84 @@ Transicoes
     transform: translateX(-100%);
     opacity: 0;
 }
+
+.abrir-footer,
+.fechar-footer{
+    animation-duration: 300ms;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
+
+.abrir-footer{
+    animation-name: abrirFooter;
+}
+
+.fechar-footer{
+    animation-name: fecharFooter;
+}
+
+@-webkit-keyframes abrirFooter {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+@-o-keyframes abrirFooter {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+@-moz-keyframes abrirFooter {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+@keyframes abrirFooter {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@-webkit-keyframes fecharFooter {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+@-o-keyframes fecharFooter {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+@-moz-keyframes fecharFooter {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+@keyframes fecharFooter {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}

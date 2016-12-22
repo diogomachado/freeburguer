@@ -37,7 +37,7 @@
     </ul>
 </div>
 
-<footer class="footer-pedido" ng-show="exibirResumoPedido">
+<footer class="footer-pedido" ng-show="exibirResumoPedido" ng-class="{'abrir-footer': exibirResumoPedido, 'fechar-footer': !exibirResumoPedido}">
     <div class="footer-pedido-detalhes">
         <p>Total</p>
         <p>{{ valorTotalPedido | currency }}</p>

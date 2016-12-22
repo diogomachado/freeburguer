@@ -20,7 +20,7 @@
         <title>Boilerplate Cordova</title>
     </head>
     <body ng-app="app">
-        <div ng-view ng-class="{slide: path !== '/', home: path === '/', 'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}"></div>
+        <div ng-view ng-class="{home: path === '/', slide: path !== '/', 'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}"></div>
 
         <script type="text/javascript" src="cordova.js"></script>
 
