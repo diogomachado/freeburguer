@@ -11,7 +11,7 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
         <meta charset="UTF-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -23,6 +23,20 @@
         <div ng-view ng-class="{slide: path !== '/', home: path === '/', 'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}"></div>
 
         <script type="text/javascript" src="cordova.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyB1hfmmcipVzXuvisLLY96xV61SeLVnsy8",
+            authDomain: "freeburguer-9708a.firebaseapp.com",
+            databaseURL: "https://freeburguer-9708a.firebaseio.com",
+            storageBucket: "freeburguer-9708a.appspot.com",
+            messagingSenderId: "492191314801"
+          };
+          firebase.initializeApp(config);
+        </script>
+
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="bower_components/angular-i18n/angular-locale_pt-br.js"></script>
         <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
@@ -32,5 +46,6 @@
         <script type="text/javascript" src="app/controllers/home.js"></script>
         <script type="text/javascript" src="app/controllers/pedido.js"></script>
         <script type="text/javascript" src="app/controllers/checkout.js"></script>
+        <script type="text/javascript" src="app/directives/barFixed.js"></script>
     </body>
 </html>

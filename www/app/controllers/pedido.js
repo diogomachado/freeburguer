@@ -6,35 +6,34 @@
         .controller('PedidoController', PedidoController);
 
     // Dependencias
-    PedidoController.$injector = ['$scope', '$timeout', '$location'];
+    PedidoController.$injector = ['$scope', '$timeout', '$location', '$routeParams'];
 
-    function PedidoController($scope, $timeout, $location){
+    function PedidoController($scope, $timeout, $location, $routeParams){
 
         // Nos ajuda a controlar a view
         $scope.exibirResumoPedido = false;
 
-        // Lanches
-        // TODO: Virão do firebase
-        $scope.itens = [
-            {
-                nome : 'X-Burguer',
-                ingredientes: 'Pão, Carne, e Batata',
-                preco: 5.90,
-                selecionado: false
-            },
-            {
-                nome : 'X-Bacon',
-                ingredientes: 'Pão, Carne, Queijo, Bacon e Batata',
-                preco: 9.90,
-                selecionado: false
-            },
-            {
-                nome : 'X-Tudo',
-                ingredientes: 'Pão, Carne, Queijo, Ovo, Presunto, Bacon e Batata',
-                preco: 13.50,
-                selecionado: false
-            },
-        ];
+        // Carrega os produtos
+        var db = firebase.database();
+        var empresa = db.ref('empresas/' + $routeParams.id_empresa);
+
+        empresa.on('value', function(snapshot){
+
+            if (snapshot.val()){
+
+                var empresa = snapshot.val();
+
+                if (empresa.produtos){
+                    $scope.itens = empresa.produtos;
+                    $scope.$apply();
+                }else{
+                    alert("Nenhum lanche adicionado!");
+                }
+
+            }else{
+                console.warn("Nenhuma empresa com esse ID.");
+            }
+        });
 
         // Observa se usuário vai selecionar algum item, para exibir o rodapé
         $scope.$watch('itens', function(){

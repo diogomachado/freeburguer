@@ -6,9 +6,9 @@
         .controller('HomeController', HomeController);
 
     // Dependencias
-    HomeController.$injector = ['$scope'];
+    HomeController.$injector = ['$scope', '$location'];
 
-    function HomeController($scope){
+    function HomeController($scope, $location){
 
         this.scanear = function(){
 
@@ -28,6 +28,35 @@
                   alert("Scanning failed: " + error);
               }
             );
+
+        }
+
+        this.encontrar = function(){
+
+            var uid = $scope.uid_empresa;
+
+            var db = firebase.database();
+            var empresas = db.ref('empresas');
+
+            var query = empresas
+                        .orderByChild('uid')
+                        .equalTo(uid)
+                        .limitToFirst(1);
+
+            query.on('value', function(snapshot){
+
+                if (snapshot.val()){
+
+                    var empresa = snapshot.val();
+
+                    var keys = Object.keys(empresa);
+
+                    $location.path('pedido/' + keys[0]);
+
+                }else{
+                    console.warn("Nenhuma empresa com esse ID.");
+                }
+            });
         }
     }
 

@@ -1,4 +1,4 @@
-<header class="toolbar {{ device }}">
+<header class="toolbar {{ device }} barFixed">
     <section class="buttons"></section>
 
     <section class="title {{ device }}">
@@ -24,7 +24,7 @@
             <label>
                 <div class="checkbox-info">
                     <p class="checkbox-info-titulo">{{ lanche.nome }}</p>
-                    <p class="checkbox-info-descricao">{{ lanche.ingredientes }}</p>
+                    <p class="checkbox-info-descricao">{{ lanche.descricao }}</p>
                     <p class="checkbox-info-preco">{{ lanche.preco | currency}}</p>
                 </div>
                 <div class="checkbox-input">

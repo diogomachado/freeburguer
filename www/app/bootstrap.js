@@ -10,7 +10,7 @@
             controller   : 'HomeController',
             controllerAs : 'Home'
         })
-        .when('/pedido', {
+        .when('/pedido/:id_empresa', {
             templateUrl  : 'app/views/pedido.html',
             controller   : 'PedidoController',
             controllerAs : 'Pedido'
