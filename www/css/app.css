@@ -467,8 +467,7 @@ Icons
   font-family: 'freeburguer';
   src:
     url('../fonts/freeburguer.ttf?pek8mg') format('truetype'),
-    url('../fonts/freeburguer.woff?pek8mg') format('woff'),
-    url('../fonts/freeburguer.svg?pek8mg#freeburguer') format('svg');
+    url('../fonts/freeburguer.woff?pek8mg') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -491,12 +490,15 @@ i {
 .arrow_back:before {
   content: "\e5c4";
 }
+
 .close:before {
   content: "\e5cd";
 }
+
 .exit:before {
   content: "\e879";
 }
+
 .qrcode:before {
   content: "\e900";
 }
