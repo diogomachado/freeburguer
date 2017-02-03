@@ -37,8 +37,7 @@ body {
     src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
          url('../fonts/roboto-regular-webfont.woff') format('woff'),
-         url('../fonts/roboto-regular-webfont.ttf') format('truetype'),
-         url('../fonts/roboto-regular-webfont.svg#Roboto-Regular') format('svg');
+         url('../fonts/roboto-regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -49,8 +48,7 @@ body {
     src: url('../fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
          url('../fonts/roboto-bold-webfont.woff2') format('woff2'),
          url('../fonts/roboto-bold-webfont.woff') format('woff'),
-         url('../fonts/roboto-bold-webfont.ttf') format('truetype'),
-         url('../fonts/roboto-bold-webfont.svg#Roboto-Bold') format('svg');
+         url('../fonts/roboto-bold-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -61,8 +59,7 @@ body {
     src: url('../fonts/sf-ui-display-regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('../fonts/sf-ui-display-regular-webfont.woff2') format('woff2'),
          url('../fonts/sf-ui-display-regular-webfont.woff') format('woff'),
-         url('../fonts/sf-ui-display-regular-webfont.ttf') format('truetype'),
-         url('../fonts/sf-ui-display-regular-webfont.svg#SF-UI-Display-Regular') format('svg');
+         url('../fonts/sf-ui-display-regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -73,8 +70,7 @@ body {
     src: url('../fonts/sf-ui-text-bold-webfont.eot?#iefix') format('embedded-opentype'),
          url('../fonts/sf-ui-text-bold-webfont.woff2') format('woff2'),
          url('../fonts/sf-ui-text-bold-webfont.woff') format('woff'),
-         url('../fonts/sf-ui-text-bold-webfont.ttf') format('truetype'),
-         url('../fonts/sf-ui-text-bold-webfont.svg#SF-UI-Text-Bold') format('svg');
+         url('../fonts/sf-ui-text-bold-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -408,6 +404,31 @@ Checkbox
     margin: 0;
     font-size: .7em;
     color: #4CAF50;
+}
+
+/*
+Home
+*/
+
+.footer-home{
+    position: fixed;
+    bottom: 3%;
+    width: 90%;
+}
+
+.footer-home input[type="text"]{
+    border: 0;
+    border-bottom: 2px rgba(255, 255, 255, 0.28) solid;
+    background: none;
+    color: #fff;
+    width: 85.7%;
+    outline: none;
+}
+
+.footer-home input[type="text"]:focus{
+    transition-duration: 300ms;
+    border-bottom: 2px white solid;
+
 }
 
 /*

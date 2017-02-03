@@ -3,27 +3,16 @@
         <section class="title color-title-home">
             Freeburguer
         </section>
-        <section>
-            <button ng-click="Home.scanear()">
-                <i class="qrcode color-button-home"></i>
-                <span class="text">Fechar</span>
-            </button>
-        </section>
     </header>
 
     <div class="content content-center">
 
-        <input type="text" ng-model="uid_empresa" placeholder="ID empresa">
-        <button type="button" ng-click="Home.encontrar()">Buscar</button>
-
-        <div class="card">
-            <div class="card-body">
-                <p class="ultima-compra-legenda">Última compra</p>
-                <p class="ultima-compra-titulo">Hamburgueria</p>
-            </div>
-            <div class="card-footer">
-                <a href="#!/pedido">Repetir</a>
-            </div>
+        <div class="footer-home">
+            <input type="text" ng-model="uid_empresa" placeholder="ID empresa" maxlength="6">
+            <button type="button" ng-show="uid_empresa" ng-click="Home.encontrar()">Buscar</button>
+            <button ng-click="Home.scanear()" ng-show="!uid_empresa">
+                <i class="qrcode color-button-home"></i>
+            </button>
         </div>
     </div>
 </div>
