@@ -1,18 +1,48 @@
-<div class="background">
-    <header class="toolbar toolbar-home toolbar-transparente {{ device }}">
-        <section class="title color-title-home">
-            Freeburguer
-        </section>
-    </header>
-
-    <div class="content content-center">
-
-        <div class="footer-home">
-            <input type="text" ng-model="uid_empresa" placeholder="ID empresa" maxlength="6">
-            <button type="button" ng-show="uid_empresa" ng-click="Home.encontrar()">Buscar</button>
-            <button ng-click="Home.scanear()" ng-show="!uid_empresa">
-                <i class="qrcode color-button-home"></i>
-            </button>
+<!-- Ajuda -->
+<!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+            <div class="swiper-slide">Slide 9</div>
+            <div class="swiper-slide">Slide 10</div>
         </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+<div class="content home content-center">
+
+    <div class="home-heading">
+        <p style="margin: 0;font-size: 12px; color: #757575;">Não sabe usar o app?</p>
+        <button style="font-size: 13px;">Clique aqui</button>
+    </div>
+
+    <!-- Icone SVG -->
+    <img src="img/hamburger.svg" alt="" width="56%">
+
+    <div class="home-body">
+        <input type="text" ng-model="uid_empresa" placeholder="Código da casa" maxlength="6">
+
+        <!-- Botão buscar -->
+        <button type="button" ng-show="uid_empresa" ng-click="Home.buscar()">buscar</button>
+
+        <!-- Botão de escanear -->
+        <button ng-click="Home.scanear()" ng-show="!uid_empresa">
+            <i class="qrcode color-button-home"></i>
+        </button>
+    </div>
+
+    <div class="home-footer">
+        <button>Meus pedidos</button>
     </div>
 </div>

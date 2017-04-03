@@ -10,30 +10,31 @@
 
     function HomeController($scope, $location){
 
+
+        // angular.element(document.querySelector('.swiper')).css('display', 'block');
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            paginationType: 'progress',
+        });
+
         this.scanear = function(){
 
-            // TODO: Se tiver logado, vai para a empresa, senão pede scanner
             cordova.plugins.barcodeScanner.scan(
               function (result) {
-
-                    // Tudo certo, busta no Firebase
-                    // ...
-
-                    alert("We got a barcode\n" +
-                        "Result: " + result.text + "\n" +
-                        "Format: " + result.format + "\n" +
-                        "Cancelled: " + result.cancelled);
+                    encontrar(result.text);
               },
               function (error) {
-                  alert("Scanning failed: " + error);
+                    console.error("Erro ao scanear qrcode: " + error);
               }
             );
-
         }
 
-        this.encontrar = function(){
+        this.buscar = function(){
+            encontrar($scope.uid_empresa);
+        }
 
-            var uid = $scope.uid_empresa;
+        function encontrar(uid){
 
             var db = firebase.database();
             var empresas = db.ref('empresas');
@@ -52,9 +53,10 @@
                     var keys = Object.keys(empresa);
 
                     $location.path('pedido/' + keys[0]);
+                    $scope.$apply();
 
                 }else{
-                    console.warn("Nenhuma empresa com esse ID.");
+                    alert("Nenhuma empresa com esse ID.");
                 }
             });
         }
