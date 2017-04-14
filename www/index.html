@@ -20,13 +20,14 @@
         <title>Freeburguer</title>
     </head>
     <body ng-app="app">
+
+        <!-- Div que será injetada com as Views -->
         <div ng-view ng-class="{home: path === '/', slide: path !== '/', 'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}"></div>
 
         <script type="text/javascript" src="cordova.js"></script>
-
-        <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+        <script src="bower_components/firebase/firebase.js"></script>
         <script>
-          // Initialize Firebase
+          // Inicialização do Firebase
           var config = {
             apiKey: "AIzaSyB1hfmmcipVzXuvisLLY96xV61SeLVnsy8",
             authDomain: "freeburguer-9708a.firebaseapp.com",
@@ -37,16 +38,23 @@
           firebase.initializeApp(config);
         </script>
 
+        <!-- Dependencias -->
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="bower_components/angular-i18n/angular-locale_pt-br.js"></script>
         <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
         <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
         <script type="text/javascript" src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+
+        <!-- Inicializador do projeto -->
         <script type="text/javascript" src="app/bootstrap.js"></script>
+
+        <!-- Controllers -->
         <script type="text/javascript" src="app/controllers/home.js"></script>
-        <script type="text/javascript" src="app/controllers/pedido.js"></script>
-        <script type="text/javascript" src="app/controllers/checkout.js"></script>
+        <script type="text/javascript" src="app/controllers/cardapio.js"></script>
+        <script type="text/javascript" src="app/controllers/pedidoBusca.js"></script>
+        <script type="text/javascript" src="app/controllers/pedidoInfo.js"></script>
+
+        <!-- Diretivas -->
         <script type="text/javascript" src="app/directives/barFixed.js"></script>
-        <script src="bower_components/Swiper/dist/js/swiper.min.js"></script>
     </body>
 </html>

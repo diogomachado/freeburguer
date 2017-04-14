@@ -377,13 +377,6 @@ Checkbox
 /*
 Home
 */
-
-.home-heading{
-    position: absolute;
-    top: 8%;
-    text-align: center;
-}
-
 .home input[type="text"]{
     border: 0;
     border-bottom: 1px rgba(179, 154, 154, 0.28) solid;

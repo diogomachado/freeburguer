@@ -5,40 +5,38 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    // Dependencias
     HomeController.$injector = ['$scope', '$location'];
 
     function HomeController($scope, $location){
 
-
-        // angular.element(document.querySelector('.swiper')).css('display', 'block');
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            paginationType: 'progress',
-        });
-
+        // Faz a leitura do QRcode
         this.scanear = function(){
 
             cordova.plugins.barcodeScanner.scan(
-              function (result) {
+                function (result) {
                     encontrar(result.text);
-              },
-              function (error) {
+                },
+                function (error) {
                     console.error("Erro ao scanear qrcode: " + error);
-              }
+                }
             );
         }
 
+        // Faz a busca ao tocar no button buscar
         this.buscar = function(){
             encontrar($scope.uid_empresa);
         }
 
+        // Realiza a busca na plataforma Firebase
         function encontrar(uid){
 
+            // Inicializa
             var db = firebase.database();
+
+            // Busca a referencia, entenda como uma URL, empresas no Firebase é representando por /empresas
             var empresas = db.ref('empresas');
 
+            // Prepara a busca filtrando
             var query = empresas
                         .orderByChild('uid')
                         .equalTo(uid)
@@ -52,7 +50,8 @@
 
                     var keys = Object.keys(empresa);
 
-                    $location.path('pedido/' + keys[0]);
+                    $location.path('cardapio/' + keys[0]);
+
                     $scope.$apply();
 
                 }else{
