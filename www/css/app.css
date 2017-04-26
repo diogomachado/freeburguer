@@ -19,6 +19,13 @@ body {
     background: #FAFAFA;
 }
 
+/* Reseta os padrões de button */
+button{
+    outline: none;
+    border: 0;
+    background: none;
+}
+
 @font-face {
     font-family: 'Rockwell-Bold';
     src: url('../fonts/rockwell-bold-webfont.eot');
@@ -86,7 +93,6 @@ Tipografia
     font-family: 'SF-UI-Display-Regular';
 }
 
-/* TODO: Se basear no guideline do Android */
 .content{
     padding: 3%;
     display: flex;
@@ -103,7 +109,6 @@ Tipografia
 /*
 Toolbar
 */
-
 .toolbar{
     position: fixed;
     width: 100%;
@@ -194,7 +199,6 @@ Customizacoes apenas da toolbar home
 /*
 Comportamento no iOS - Icones somem, descricao aparecem
 */
-
 .toolbar section button span.text{
      display: none;
 }
@@ -400,17 +404,20 @@ Home
     display: inline-flex;
 }
 
-.home-footer{
+.footer{
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: right;
 }
 
-.home-footer button{
+.footer button,
+.footer a{
     font-size: 14px;
     padding: 5%;
     color: #95989A;
+    display: inline-block;
+    text-decoration: none;
 }
 
 /*
@@ -464,6 +471,52 @@ Rodape
 }
 
 /*
+Pedido info
+*/
+.pedido-codigo{
+    font-size: 36px;
+    color: #95989A;
+    padding: 5% 0;
+}
+
+.pedido-botoes button{
+    box-shadow: 0 5px 11px -4px #b3b3b3;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    border-radius: 2px;
+    padding: 5% 3%;
+    font-size: 0.85em;
+    color: #747474;
+    margin-bottom: 1.5%;
+}
+
+.pedido-botoes p{
+    font-size: 12px;
+    color: #CECECE;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.pedido-resumo{
+    margin-top: 25px;
+}
+
+.pedido-resumo p{
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    color: #95989A;
+}
+
+.pedido-resumo p:nth-child(2){
+    font-size: 32px;
+    color: #27AE60;
+    line-height: 1em;
+    margin-top: .2em;
+}
+
+/*
 Icons
 */
 @font-face {
@@ -476,7 +529,6 @@ Icons
 }
 
 i {
-  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'freeburguer' !important;
   speak: none;
   font-style: normal;
@@ -484,8 +536,6 @@ i {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -637,27 +687,60 @@ Transicoes
 }
 
 /*
-Swiper
+Spinner
 */
-.swiper-container {
-        width: 100%;
-        height: 100%;
-    }
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
+
+.spinner-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 28;
+    background: #f1c40f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}

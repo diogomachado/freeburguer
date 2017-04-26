@@ -9,11 +9,13 @@
             restrict: 'C',
             link: function (scope, iElement, iAttrs) {
 
-                angular.element(document).ready(function () {
+                scope.$on('$viewContentLoaded', function(){
 
-                    var content = angular.element(document.getElementsByClassName('content'));
-                    var height  = iElement[0].offsetHeight;
-                    content[0].style.paddingTop = height + 'px';
+                    $timeout(function(){
+                        var content = angular.element(document.getElementsByClassName('content'));
+                        var height  = iElement[0].offsetHeight;
+                        content[0].style.paddingTop = height + 'px';
+                    });
                 });
 
             },

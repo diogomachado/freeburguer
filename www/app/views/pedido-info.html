@@ -1,13 +1,13 @@
-<header class="toolbar {{ device }}">
+<header class="toolbar {{ device }} barFixed">
 
     <section class="buttons"></section>
 
     <section class="title {{ device }}">
-        Hamburgueria
+        Detalhes do pedido
     </section>
 
     <section class="buttons">
-        <button class="{{ device }}" ng-click="logout()">
+        <button type="button" class="{{ device }}" ng-click="sair()">
             <i class="exit"></i>
             <span class="text">Sair</span>
         </button>
@@ -16,10 +16,17 @@
 </header>
 
 <div class="content">
-
-    <!-- SVG -->
-    <h1>Bom apetite!</h1>
-
-    <button ng-click="Checkout.voltar()">Voltar</button>
-
+    <class class="pedido">
+        <div class="pedido-codigo">F1389</div>
+        <div class="pedido-botoes">
+            <p>Opções</p>
+            <button type="button" ng-click="PedidoInfo.navegar()">Rastrear pedido</button>
+            <button type="button" ng-click="PedidoInfo.cadastrarContato()">Cadastrar como contato</button>
+            <button type="button">Enviar foto do pedido</button>
+        </div>
+        <div class="pedido-resumo">
+            <p>Total pedido</p>
+            <p>R$ 17,28</p>
+        </div>
+    </class>
 </div>

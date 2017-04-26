@@ -19,19 +19,19 @@
         })
         // Rota para fazer a buscar por um pedido
         .when('/buscar-pedido', {
-            templateUrl  : 'app/views/buscar-pedido.html',
-            controller   : 'BuscarPedidoController',
-            controllerAs : 'BuscarPedido'
+            templateUrl  : 'app/views/pedido-busca.html',
+            controller   : 'PedidoBuscaController',
+            controllerAs : 'PedidoBusca'
         })
         // Rota para ver informações de um pedido
-        .when('/checkout', {
-            templateUrl  : 'app/views/checkout.html',
-            controller   : 'CheckoutController',
-            controllerAs : 'Checkout'
+        .when('/pedido-info', {
+            templateUrl  : 'app/views/pedido-info.html',
+            controller   : 'PedidoInfoController',
+            controllerAs : 'PedidoInfo'
         })
         .otherwise ({ redirectTo: '/' });
     })
-    .run(function($rootScope, $location){
+    .run(function($rootScope, $location, $cordovaDialogs){
 
         // TODO: remover ao lançar
         $rootScope.device = 'android';
@@ -43,6 +43,38 @@
             $rootScope.device = plataforma.toLowerCase();
 
         }, false);
+
+        $rootScope.sair = function(){
+
+            $cordovaDialogs.confirm("Tem certeza que deseja sair?", "Atenção", ['Sim','Não'])
+            .then(function(buttonIndex) {
+
+                // 'OK' = 1, 'Cancel' = 2
+                if (buttonIndex == 1){
+
+                    var exp = /(cardapio)/ig;
+                    var location = window.location.hash;
+
+                    if (location.search(exp) != -1){
+
+                        // Variavel de apoio
+                        var back = {};
+
+                        // Gravo a ID do firebase da casa de hamburgueres
+                        back.casa_id = sessionStorage.getItem('freeburguer-id');
+
+                        // Gravo os itens até então selecionados
+                        back.casa_itens = sessionStorage.getItem('freeburguer-itens');
+
+                        // Grava no localStorage
+                        localStorage.setItem('freeburguer-back', JSON.stringify(back));
+                    }
+
+                    // Sai do app
+                    navigator.app.exitApp();
+                }
+            });
+        }
 
         // Rastreia a mudança de rota e coleta o path (ex: /pedido) do navegador
         $rootScope.$on("$locationChangeStart", function (event, next, current) {

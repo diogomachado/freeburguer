@@ -5,12 +5,37 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$injector = ['$scope', '$location'];
+    HomeController.$injector = ['$scope', '$rootScope', '$location', '$cordovaDialogs', '$timeout', '$cordovaVibration'];
 
-    function HomeController($scope, $location){
+    function HomeController($scope, $rootScope, $location, $cordovaDialogs, $timeout, $cordovaVibration){
+
+        // Se sabemos que ele saiu no meio de um pedido
+        var voltar = localStorage.getItem('freeburguer-back');
+
+        if (voltar){
+
+            voltar = JSON.parse(voltar);
+
+            $timeout(function(){
+                $cordovaDialogs.confirm("Você estava escolhendo seu pedido da última vez que saiu, deseja voltar a seleção?", "Deseja continuar...", ['Sim','Não'])
+                .then(function(buttonIndex) {
+                    if (buttonIndex == 1){
+                        encontrar(voltar.casa_id);
+
+                        // Seleciona novamente os itens já selecionados antes
+                        // ...
+
+                        // Remove
+                        localStorage.removeItem('freeburguer-back');
+                    }
+                });
+            }, 600);
+        }
 
         // Faz a leitura do QRcode
         this.scanear = function(){
+
+            $rootScope.carregar = true;
 
             cordova.plugins.barcodeScanner.scan(
                 function (result) {
@@ -24,6 +49,9 @@
 
         // Faz a busca ao tocar no button buscar
         this.buscar = function(){
+
+            $rootScope.carregar = true;
+
             encontrar($scope.uid_empresa);
         }
 
@@ -52,10 +80,23 @@
 
                     $location.path('cardapio/' + keys[0]);
 
+                    // Guarda a ID da empresa em sessão
+                    sessionStorage.setItem('freeburguer-id', uid);
+
+                    $rootScope.carregar = false;
+
                     $scope.$apply();
 
                 }else{
-                    alert("Nenhuma empresa com esse ID.");
+
+                    $rootScope.carregar = false;
+                    $scope.$apply();
+
+                    $cordovaVibration.vibrate(100);
+                    $cordovaDialogs.alert('Nenhuma empresa com esse ID.', 'Ops :(', 'Beleza')
+                    .then(function() {
+                      // callback success
+                    });
                 }
             });
         }

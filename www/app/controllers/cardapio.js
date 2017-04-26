@@ -5,9 +5,9 @@
         .module('app')
         .controller('CardapioController', CardapioController);
 
-    CardapioController.$injector = ['$scope', '$timeout', '$location', '$routeParams'];
+    CardapioController.$injector = ['$scope', '$timeout', '$location', '$routeParams', 'firebaseTool'];
 
-    function CardapioController($scope, $timeout, $location, $routeParams){
+    function CardapioController($scope, $timeout, $location, $routeParams, firebaseTool){
 
         // Nos ajuda a controlar a view
         $scope.exibirResumoPedido = false;
@@ -23,9 +23,10 @@
                 var empresa = snapshot.val();
 
                 if (empresa.produtos){
+
                     $scope.nome = empresa.nome;
                     $scope.itens = empresa.produtos;
-                    $scope.$apply();
+                    // $scope.$apply();
                 }else{
                     alert("Nenhum lanche adicionado!");
                 }
@@ -39,22 +40,44 @@
         $scope.$watch('itens', function(){
 
             var selecionados = 0;
+            var itens = [];
+
             $scope.valorTotalPedido = 0;
 
             angular.forEach($scope.itens, function(item, key){
                 if (item.selecionado){
+
+                    itens.push(key);
+
                     selecionados++;
 
                     $scope.valorTotalPedido += item.preco;
                 }
             });
 
+            // Grava os itens até então selecionados
+            if (itens.length > 0){
+                sessionStorage.setItem('freeburguer-itens', JSON.stringify(itens));
+            }else{
+                sessionStorage.removeItem('freeburguer-itens');
+            }
+
             $scope.exibirResumoPedido = (selecionados > 0) ? true : false;
 
         }, true);
 
         this.fecharPedido = function(){
-            $location.path('checkout');
+
+            // Dados do pedido
+            var pedido = {};
+            pedido.empresa = $routeParams.id_empresa;
+            pedido.itens = $scope.itens;
+
+            // Cria um novo pedido
+            firebaseTool.create('/pedidos/', pedido);
+
+            // Redireciona
+            $location.path('pedido-info');
         }
     }
 

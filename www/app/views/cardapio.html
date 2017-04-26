@@ -6,7 +6,7 @@
     </section>
 
     <section class="buttons">
-        <button class="{{ device }}" ng-click="logout()">
+        <button type="button" class="{{ device }}" ng-click="sair()">
             <i class="exit"></i>
             <span class="text">Sair</span>
         </button>
@@ -44,6 +44,6 @@
     </div>
 
     <div class="footer-pedido-botoes">
-        <button type="button" ng-click="Pedido.fecharPedido()" class="{{ device }}">Fechar pedido</button>
+        <button type="button" ng-click="Cardapio.fecharPedido()" class="{{ device }}">Fechar pedido</button>
     </div>
 </footer>
