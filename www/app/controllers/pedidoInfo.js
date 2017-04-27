@@ -17,6 +17,15 @@
         // Assim que carregar do firebase
         $scope.pedido.$loaded().then(function() {
 
+            $scope.total_pedido = 0;
+
+            // Calcula o valor total do pedido
+            angular.forEach($scope.pedido.itens, function(item, key){
+                $scope.total_pedido += item.preco;
+            });
+
+            console.log($scope.total_pedido);
+
             $scope.empresa = $firebaseObject(firebase.database().ref().child('empresas/' + $scope.pedido.empresa));
 
             $scope.empresa.$loaded().then(function() {

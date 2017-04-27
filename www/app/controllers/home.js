@@ -22,7 +22,7 @@
                     if (buttonIndex == 1){
                         encontrar(voltar.casa_id);
 
-                        // Seleciona novamente os itens já selecionados antes
+                        // TODO: Seleciona novamente os itens já selecionados antes
                         // ...
 
                         // Remove

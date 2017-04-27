@@ -17,7 +17,7 @@
 
 <div class="content">
     <class class="pedido">
-        <div class="pedido-codigo">F1389</div>
+        <div class="pedido-codigo">{{ pedido.uid }}</div>
         <div class="pedido-botoes">
             <p>Opções</p>
             <button type="button" ng-click="PedidoInfo.navegar()">Rastrear pedido</button>
@@ -26,7 +26,7 @@
         </div>
         <div class="pedido-resumo">
             <p>Total pedido</p>
-            <p>R$ 17,28</p>
+            <p>{{ total_pedido | currency }}</p>
         </div>
     </class>
 </div>
