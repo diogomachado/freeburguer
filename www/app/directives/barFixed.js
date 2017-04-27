@@ -12,9 +12,20 @@
                 scope.$on('$viewContentLoaded', function(){
 
                     $timeout(function(){
+
                         var content = angular.element(document.getElementsByClassName('content'));
                         var height  = iElement[0].offsetHeight;
-                        content[0].style.paddingTop = height + 'px';
+
+                        /**
+                          * Com o uso de transitions, o content vira um array de duas posições porque "existem" duas views, uma saindo e outra entrando, quero a segunda que está limpa
+                          *
+                          * Caso dê reload na página, só existirá a posição 0
+                          */
+                        if (content.length > 1){
+                            content[1].style.paddingTop = height + 'px';
+                        }else{
+                            content[0].style.paddingTop = height + 'px';
+                        }
                     });
                 });
 

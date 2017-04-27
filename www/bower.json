@@ -24,6 +24,7 @@
     "normalize-css": "normalize.css#~3.0.3",
     "angular-i18n": "^1.5.9",
     "angular-animate": "^1.6.0",
-    "firebase": "^3.7.6"
+    "firebase": "^3.7.6",
+    "angularfire": "^2.3.0"
   }
 }

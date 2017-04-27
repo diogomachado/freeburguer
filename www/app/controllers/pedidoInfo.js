@@ -5,24 +5,37 @@
         .module('app')
         .controller('PedidoInfoController', PedidoInfoController);
 
-    PedidoInfoController.$injector = ['$scope', '$rootScope', '$timeout', '$location'];
+    PedidoInfoController.$injector = ['$scope', '$rootScope', '$timeout', '$routeParams', '$firebaseObject'];
 
-    function PedidoInfoController($scope, $rootScope, $timeout, $location){
+    function PedidoInfoController($scope, $rootScope, $timeout, $routeParams, $firebaseObject){
+
+        $rootScope.carregar = true;
+
+        // Carrega o pedido
+        $scope.pedido = $firebaseObject(firebase.database().ref().child('pedidos/' + $routeParams.id_pedido));
+
+        // Assim que carregar do firebase
+        $scope.pedido.$loaded().then(function() {
+
+            $scope.empresa = $firebaseObject(firebase.database().ref().child('empresas/' + $scope.pedido.empresa));
+
+            $scope.empresa.$loaded().then(function() {
+                $rootScope.carregar = false;
+            });
+        });
 
         this.cadastrarContato = function(){
 
-            // TODO: mudar nome empresa
-            var contato = navigator.contacts.create({"displayName": "Empresa Freeburguer"});
+            // Nome da empresa
+            var contato = navigator.contacts.create({"displayName": $scope.empresa.nome });
 
+            // Array de números
             var numeros = [];
 
-            numeros[0] = new ContactField('Trabalho', '99999-1010', false);
-            numeros[1] = new ContactField('Celular', '99999-2222', true);
+            // True do terceiro parametro identifica o número prioritário
+            numeros[0] = new ContactField('Celular', $scope.empresa.telefone, true);
 
-            // Atribui o array de números
             contato.phoneNumbers = numeros;
-
-            // Salva o contato
             contato.save();
 
             // Exibir alerta

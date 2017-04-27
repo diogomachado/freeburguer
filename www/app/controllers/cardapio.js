@@ -23,12 +23,10 @@
                 var empresa = snapshot.val();
 
                 if (empresa.produtos){
-
                     $scope.nome = empresa.nome;
                     $scope.itens = empresa.produtos;
-                    // $scope.$apply();
                 }else{
-                    alert("Nenhum lanche adicionado!");
+                    snackbar.timer("Nenhum lanche disponível", 3000);
                 }
 
             }else{
@@ -70,14 +68,20 @@
 
             // Dados do pedido
             var pedido = {};
+
+            pedido.uid = gerarID();
             pedido.empresa = $routeParams.id_empresa;
             pedido.itens = $scope.itens;
 
             // Cria um novo pedido
-            firebaseTool.create('/pedidos/', pedido);
+            var pedido_id = firebaseTool.create('/pedidos/', pedido);
 
             // Redireciona
-            $location.path('pedido-info');
+            $location.path('pedido-info/' + pedido_id);
+        }
+
+        function gerarID(){
+            return 'P' + Math.random().toString(5).substr(2, 5);
         }
     }
 

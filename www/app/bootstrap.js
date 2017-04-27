@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('app',['ngRoute', 'ngCordova', 'ngAnimate'])
+    angular.module('app',['ngRoute', 'ngCordova', 'ngAnimate', 'firebase'])
     .config(function($routeProvider)
     {
         $routeProvider
@@ -24,7 +24,7 @@
             controllerAs : 'PedidoBusca'
         })
         // Rota para ver informações de um pedido
-        .when('/pedido-info', {
+        .when('/pedido-info/:id_pedido', {
             templateUrl  : 'app/views/pedido-info.html',
             controller   : 'PedidoInfoController',
             controllerAs : 'PedidoInfo'
