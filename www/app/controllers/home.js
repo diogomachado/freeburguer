@@ -100,6 +100,11 @@
                 }
             });
         }
+
+        this.pingar = function(){
+            var element = document.querySelector('#ketchup');
+            element.setAttribute("class", "pingar");
+        }
     }
 
 })();
