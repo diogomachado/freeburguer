@@ -35,15 +35,26 @@
             </div>
         </div>
 
+        <div class="offline-alert" ng-show="alertaOnline" ng-cloak>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.42 135.42">
+                <path class="tomada" ng-class="{'on' : online, 'off' : !online}" d="M68.59,96.53,87,78.14a4,4,0,0,0-5.66-5.66L62.93,90.87,44.55,72.49,62.93,54.1a4,4,0,1,0-5.66-5.66L38.89,66.83l-6.36-6.36L21.21,71.78a30,30,0,0,0-3.82,37.76L0,126.93l8.49,8.49L25.88,118a30,30,0,0,0,37.76-3.82L75,102.89Z" style="fill:#006697"/>
+                <path d="M102.89,75l11.31-11.31A30,30,0,0,0,118,25.88l17.4-17.4L126.93,0l-17.4,17.4a30,30,0,0,0-37.76,3.82L60.47,32.53Z" style="fill:#006697"/>
+            </svg>
+
+            <p>{{ (!online) ? 'Você está desconectado' : 'Conexão retomada' }}</p>
+            <p ng-show="!online">Verifique sua conexão de dados</p>
+        </div>
+
         <!-- Div que será injetada com as Views -->
         <div ng-view ng-class="{home: path === '/', slide: path !== '/', 'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}"></div>
 
         <div class="snackbar"></div>
 
-        <script type="text/javascript" src="cordova.js"></script>
+        <!-- Dependencias -->
+        <script src="cordova.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/firebase/firebase.js"></script>
         <script>
-          // Inicialização do Firebase
           var config = {
             apiKey: "AIzaSyB1hfmmcipVzXuvisLLY96xV61SeLVnsy8",
             authDomain: "freeburguer-9708a.firebaseapp.com",
@@ -53,31 +64,18 @@
           };
           firebase.initializeApp(config);
         </script>
-
-        <!-- Dependencias -->
-        <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angularfire/dist/angularfire.js"></script>
         <script src="bower_components/angular-i18n/angular-locale_pt-br.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
-
-        <!-- Inicializador do projeto -->
         <script src="app/bootstrap.js"></script>
-
-        <!-- Controllers -->
         <script src="app/controllers/home.js"></script>
         <script src="app/controllers/cardapio.js"></script>
         <script src="app/controllers/pedidoBusca.js"></script>
         <script src="app/controllers/pedidoInfo.js"></script>
-
-        <!-- Diretivas -->
         <script src="app/directives/barFixed.js"></script>
-
-        <!-- Services -->
         <script src="app/services/firebaseTool.js"></script>
-
-        <!--  Outros -->
         <script src="js/snackbar.js"></script>
 
     </body>

@@ -15,11 +15,11 @@
             $rootScope.carregar = true;
 
             // Manda encontrar
-            encontrar($scope.id_pedido);
+            encontrar($scope.codigo_pedido);
         }
 
         // Realiza a busca na plataforma Firebase
-        function encontrar(uid){
+        function encontrar(codigo){
 
             // Inicializa
             var db = firebase.database();
@@ -28,8 +28,8 @@
 
             // Prepara a busca filtrando
             var query = pedidos
-                        .orderByChild('uid')
-                        .equalTo(uid)
+                        .orderByChild('codigo')
+                        .equalTo(codigo)
                         .limitToFirst(1);
 
             query.on('value', function(snapshot){

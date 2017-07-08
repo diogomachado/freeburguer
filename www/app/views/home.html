@@ -1,18 +1,18 @@
 <div class="content home content-center">
 
     <!-- Icone SVG -->
-    <img src="img/hamburger.svg" alt="" width="56%">
+    <img src="img/hamburger.svg" style="width: 168px; margin-bottom: 10px;">
 
     <div class="home-body">
 
         <!-- ID da empresa -->
-        <input type="text" ng-model="uid_empresa" placeholder="Código da casa" maxlength="6">
+        <input type="text" ng-model="codigo_empresa" placeholder="Código da casa" maxlength="6">
 
         <!-- Botão buscar -->
-        <button type="button" ng-show="uid_empresa" ng-click="Home.buscar()">buscar</button>
+        <button type="button" ng-show="codigo_empresa" ng-click="Home.buscar()">buscar</button>
 
         <!-- Botão de escanear -->
-        <button ng-click="Home.scanear()" ng-show="!uid_empresa">
+        <button ng-click="Home.scanear()" ng-show="!codigo_empresa">
             <i class="qrcode color-button-home"></i>
         </button>
     </div>

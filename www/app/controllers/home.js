@@ -52,22 +52,20 @@
 
             $rootScope.carregar = true;
 
-            encontrar($scope.uid_empresa);
+            encontrar($scope.codigo_empresa);
         }
 
         // Realiza a busca na plataforma Firebase
-        function encontrar(uid){
+        function encontrar(codigo){
 
             // Inicializa
             var db = firebase.database();
-
-            // Busca a referencia, entenda como uma URL, empresas no Firebase é representando por /empresas
             var empresas = db.ref('empresas');
 
             // Prepara a busca filtrando
             var query = empresas
-                        .orderByChild('uid')
-                        .equalTo(uid)
+                        .orderByChild('codigo')
+                        .equalTo(codigo)
                         .limitToFirst(1);
 
             query.on('value', function(snapshot){
@@ -81,7 +79,7 @@
                     $location.path('cardapio/' + keys[0]);
 
                     // Guarda a ID da empresa em sessão
-                    sessionStorage.setItem('freeburguer-id', uid);
+                    sessionStorage.setItem('freeburguer-id', codigo);
 
                     $rootScope.carregar = false;
 

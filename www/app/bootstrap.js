@@ -31,7 +31,7 @@
         })
         .otherwise ({ redirectTo: '/' });
     })
-    .run(function($rootScope, $location, $cordovaDialogs){
+    .run(function($rootScope, $location, $cordovaDialogs, $timeout){
 
         // TODO: remover ao lançar
         $rootScope.device = 'android';
@@ -43,6 +43,26 @@
             $rootScope.device = plataforma.toLowerCase();
 
         }, false);
+
+        $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+            $rootScope.online = true;
+            console.log("Online");
+        });
+
+        $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+            $rootScope.online = false;
+            $rootScope.alertaOnline = true;
+            console.log("Offline");
+        });
+
+        $rootScope.$watch('online', function(){
+            if ($rootScope.online){
+                $rootScope.alertaOnline = true;
+                $timeout(function(){
+                    $rootScope.alertaOnline = false;
+                }, 3000)
+            }
+        });
 
         $rootScope.sair = function(){
 

@@ -5,9 +5,9 @@
         .module('app')
         .controller('CardapioController', CardapioController);
 
-    CardapioController.$injector = ['$scope', '$timeout', '$location', '$routeParams', 'firebaseTool'];
+    CardapioController.$injector = ['$scope', '$timeout', '$location', '$routeParams', '$cordovaDialogs', 'firebaseTool'];
 
-    function CardapioController($scope, $timeout, $location, $routeParams, firebaseTool){
+    function CardapioController($scope, $timeout, $location, $routeParams, $cordovaDialogs, firebaseTool){
 
         // Nos ajuda a controlar a view
         $scope.exibirResumoPedido = false;
@@ -66,18 +66,25 @@
 
         this.fecharPedido = function(){
 
-            // Dados do pedido
-            var pedido = {};
+            $cordovaDialogs.confirm("Ao avançar você irá confirmar o seu pedido, iremos preparar o seu lanche e enviar ao motoboy, tem certeza disso?", "Atenção", ['Sim','Não'])
+            .then(function(buttonIndex) {
 
-            pedido.uid = gerarID();
-            pedido.empresa = $routeParams.id_empresa;
-            pedido.itens = $scope.itens;
+                if (buttonIndex == 1){
 
-            // Cria um novo pedido
-            var pedido_id = firebaseTool.create('/pedidos/', pedido);
+                    // Dados do pedido
+                    var pedido = {};
 
-            // Redireciona
-            $location.path('pedido-info/' + pedido_id);
+                    pedido.uid = gerarID();
+                    pedido.empresa = $routeParams.id_empresa;
+                    pedido.itens = $scope.itens;
+
+                    // Cria um novo pedido
+                    var pedido_id = firebaseTool.create('/pedidos/', pedido);
+
+                    // Redireciona
+                    $location.path('pedido-info/' + pedido_id);
+                }
+            });
         }
 
         function gerarID(){

@@ -13,19 +13,14 @@
           */
         service.create = function(url, objeto){
 
-            console.log(url);
+            var nova_chave = firebase.database().ref().child(url).push().key;
+            var data = {};
 
-            var new_key = firebase.database().ref().child(url).push().key;
+            data[url + nova_chave] = objeto;
 
-            var new_data = {};
+            firebase.database().ref().update(data);
 
-            new_data[url + new_key] = objeto;
-
-            console.log(new_data);
-
-            console.log(firebase.database().ref().update(new_data));
-
-            return new_key;
+            return nova_chave;
         }
 
         /**
