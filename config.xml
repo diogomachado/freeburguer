@@ -8,6 +8,7 @@
         Diogo Machado
     </author>
     <content src="index.html" />
+    <hook type="after_prepare" src="hooks/after_prepare.js" />
     <platform name="windows">
         <icon height="150" src="resources/windows/icon/Square150x150Logo.scale-100.png" width="150" />
         <icon height="360" src="resources/windows/icon/Square150x150Logo.scale-240.png" width="360" />
