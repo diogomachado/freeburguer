@@ -15,7 +15,7 @@ gulp.task('minify-css', function(){
     .pipe(concat('app.min.css'))
     .pipe(stripCssComments({all: true}))
     .pipe(cssmin())
-    .pipe(gulp.dest('./www/assets/'));
+    .pipe(gulp.dest('./www/assets/css/'));
 });
 
 gulp.task('default',['minify-css']);
