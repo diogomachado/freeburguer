@@ -4,34 +4,30 @@ var del  = require('del');
 var fs   = require('fs');
 var path = require('path');
 
-// Coleta a plataforma
-var platform = process.argv[3];
-
 // Diretório para excluir
 var diretorio = 'platforms/android/assets/www/bower_components/';
 
 function verificarDiretorio(diretorio, expressaoRegular, callback){
 
     if (!fs.existsSync(diretorio)){
-        console.log("Diretório não encontrado: ",diretorio);
+        console.log("Diretório não encontrado: ", diretorio);
         return;
     }
 
     // Captura os arquivos
-    var files=fs.readdirSync(diretorio);
+    var arquivos = fs.readdirSync(diretorio);
 
     // Percorre os arquivos
-    for(var i=0; i < files.length; i++){
+    for (var i = 0; i < arquivos.length; i++){
 
-        // Captura o caminho do arquivo
-        var caminhoArquivo = path.join(diretorio,files[i]);
-
+        var caminhoArquivo = path.join(diretorio, arquivos[i]);
         var verificador = fs.lstatSync(caminhoArquivo);
 
         if (verificador.isDirectory()){
             // Recursividade
             verificarDiretorio(caminhoArquivo, expressaoRegular, callback);
         }
+
         // Se não encontrou as expressão, retorna o arquivo
         else if (!expressaoRegular.test(caminhoArquivo)){
             callback(caminhoArquivo);
@@ -39,17 +35,16 @@ function verificarDiretorio(diretorio, expressaoRegular, callback){
     };
 };
 
-// Se pasta existe
+// Se diretório existe
 if(fs.existsSync(diretorio)){
-	console.log('Removendo pasta...');
 
     // Procura dentro do diretório arquivos desnecessários
-    verificarDiretorio(diretorio, /(\.min.js|\.min.css|\.css)$/, function(caminhoArquivo){
+    verificarDiretorio(diretorio, /(\.min.js|\.min.css|firebase\.js|angular\-route\.min\.js|angular-locale_pt-br\.js|\.css)$/, function(caminhoArquivo){
+
+        // Exclui o arquivo
         fs.unlink(caminhoArquivo);
     });
 
-    // Deleta diretório
-	// del.sync(diretorio);
 }else{
 	console.log('Diretório não encontrado');
 }

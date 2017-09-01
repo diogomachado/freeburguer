@@ -8,7 +8,7 @@
         Diogo Machado
     </author>
     <content src="index.html" />
-    <hook type="after_prepare" src="hooks/after_prepare.js" />
+    <hook src="hooks/after_prepare.js" type="after_prepare" />
     <platform name="windows">
         <icon height="150" src="resources/windows/icon/Square150x150Logo.scale-100.png" width="150" />
         <icon height="360" src="resources/windows/icon/Square150x150Logo.scale-240.png" width="360" />
@@ -115,4 +115,5 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Para scanear o QRCode das empresas" />
     </plugin>
     <plugin name="cordova-plugin-network-information" spec="~1.3.2" />
+    <plugin name="onesignal-cordova-plugin" spec="~2.2.0" />
 </widget>

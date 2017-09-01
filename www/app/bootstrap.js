@@ -42,8 +42,32 @@
             var plataforma = device.platform;
             $rootScope.device = plataforma.toLowerCase();
 
+            /**
+              * OneSignal
+              */
+            $timeout(function(){
+
+                var abrirMensagem = function(jsonRetorno) {
+
+                    // Dados enviados pelo oneSignal
+                    console.log(jsonRetorno);
+
+                    // jsonRetorno.notification.payload.additionalData.<CHAVE>
+                };
+
+                window.plugins.OneSignal
+                .startInit("01fa3550-aa00-491d-a9bd-9e62a286501c")
+                .handleNotificationOpened(abrirMensagem)
+                .endInit();
+
+            }, 1000);
+
         }, false);
 
+
+        /**
+          * Network status
+          */
         $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
             $rootScope.online = true;
             console.log("Online");
@@ -62,6 +86,11 @@
                     $rootScope.alertaOnline = false;
                 }, 3000)
             }
+        });
+
+        // Rastreia a mudança de rota e coleta o path (ex: /pedido) do navegador
+        $rootScope.$on("$locationChangeStart", function (event, next, current) {
+            $rootScope.path = $location.path();
         });
 
         $rootScope.sair = function(){
@@ -95,10 +124,5 @@
                 }
             });
         }
-
-        // Rastreia a mudança de rota e coleta o path (ex: /pedido) do navegador
-        $rootScope.$on("$locationChangeStart", function (event, next, current) {
-            $rootScope.path = $location.path();
-        });
     });
 })();
