@@ -80,9 +80,9 @@
                     // Dados do pedido
                     var pedido = {};
 
-                    pedido.uid = gerarID();
+                    pedido.codigo  = gerarID();
                     pedido.empresa = $routeParams.id_empresa;
-                    pedido.itens = $scope.itens;
+                    pedido.itens   = $scope.itens;
 
                     // Cria um novo pedido
                     var promisse = firebaseTool.create('/pedidos/', pedido);
