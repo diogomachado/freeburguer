@@ -1,34 +1,44 @@
 (function() {
     angular.module('app').factory('firebaseTool', firebaseTool);
 
-    function firebaseTool(){
+    function firebaseTool($q){
 
         var service = {};
 
         /**
-          * Cria um novo objeto na base de dados
-          *
-          * O parâmetro URL recebe a URL da base, exemplo: 'empresas/fotos/';
-          * O parâmetro OBJETO é o valor que será atribuido a linha, pode ser uma string, número ou objeto;
+          * Cria uma nova entrada e retorna a CHAVE do firebase
           */
         service.create = function(url, objeto){
 
-            var nova_chave = firebase.database().ref().child(url).push().key;
-            var data = {};
+            // Cria um promisse
+            var deferred = $q.defer();
 
-            data[url + nova_chave] = objeto;
+            // Inicializa uma nova chave
+            var new_key = firebase.database().ref().child(url).push().key;
 
-            firebase.database().ref().update(data);
+            var new_data = {};
+            new_data[url + new_key] = objeto;
 
-            return nova_chave;
+            // Retorna o promise
+            var promise = firebase.database().ref().update(new_data);
+
+            promise.then(function(){
+                // Dados inseridos, retorna a new_key
+                deferred.resolve(new_key);
+            },
+            function(error){
+                deferred.reject("Problemas ao inserir no DB");
+            });
+
+            // Retorna o promisse
+            return deferred.promise;
         }
 
         /**
           * Cria/atualiza um path simples com o objeto
-          *
           */
         service.set = function(url, objeto){
-            firebase.database().ref(url).set(objeto);
+            return firebase.database().ref(url).set(objeto);
         }
 
         return service;

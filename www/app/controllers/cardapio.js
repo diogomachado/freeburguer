@@ -5,9 +5,9 @@
         .module('app')
         .controller('CardapioController', CardapioController);
 
-    CardapioController.$injector = ['$scope', '$timeout', '$location', '$routeParams', '$cordovaDialogs', 'firebaseTool'];
+    CardapioController.$injector = ['$scope', '$timeout', '$location', '$routeParams', 'firebaseTool'];
 
-    function CardapioController($scope, $timeout, $location, $routeParams, $cordovaDialogs, firebaseTool){
+    function CardapioController($scope, $timeout, $location, $routeParams, firebaseTool){
 
         // Nos ajuda a controlar a view
         $scope.exibirResumoPedido = false;
@@ -66,8 +66,14 @@
 
         this.fecharPedido = function(){
 
-            $cordovaDialogs.confirm("Ao avançar você irá confirmar o seu pedido, iremos preparar o seu lanche e enviar ao motoboy, tem certeza disso?", "Atenção", ['Sim','Não'])
-            .then(function(buttonIndex) {
+            navigator.notification.confirm(
+                'Ao avançar você irá confirmar o seu pedido, iremos preparar o seu lanche e enviar ao motoboy, tem certeza disso?',  // Mensagem
+                callbackFecharPedido, // Função de callback
+                'Atenção',            // Título
+                ['Sim','Não']         // buttonName
+            );
+
+            function callbackFecharPedido(buttonIndex){
 
                 if (buttonIndex == 1){
 
@@ -79,12 +85,18 @@
                     pedido.itens = $scope.itens;
 
                     // Cria um novo pedido
-                    var pedido_id = firebaseTool.create('/pedidos/', pedido);
+                    var promisse = firebaseTool.create('/pedidos/', pedido);
 
-                    // Redireciona
-                    $location.path('pedido-info/' + pedido_id);
+                    promisse.then(function(pedido_id){
+
+                        // Redireciona
+                        $location.path('pedido-info/' + pedido_id);
+                    },
+                    function(){
+                        console.error("Erro ao criar pedido");
+                    });
                 }
-            });
+            }
         }
 
         function gerarID(){

@@ -24,8 +24,6 @@
                 $scope.total_pedido += item.preco;
             });
 
-            console.log($scope.total_pedido);
-
             $scope.empresa = $firebaseObject(firebase.database().ref().child('empresas/' + $scope.pedido.empresa));
 
             $scope.empresa.$loaded().then(function() {
@@ -35,20 +33,33 @@
 
         this.cadastrarContato = function(){
 
-            // Nome da empresa
-            var contato = navigator.contacts.create({"displayName": $scope.empresa.nome });
+            navigator.notification.confirm(
+                'Tem certeza que deseja cadastrar o contato no aparelho?', // Mensagem
+                callbackDismiss, // Função de callback
+                'Atenção',   // Título
+                ['Sim','Não']    // buttonName
+            );
 
-            // Array de números
-            var numeros = [];
+            function callbackDismiss(buttonIndex){
 
-            // True do terceiro parametro identifica o número prioritário
-            numeros[0] = new ContactField('Celular', $scope.empresa.telefone, true);
+                if (buttonIndex == 1){
 
-            contato.phoneNumbers = numeros;
-            contato.save();
+                    // Nome da empresa
+                    var contato = navigator.contacts.create({"displayName": $scope.empresa.nome });
 
-            // Exibir alerta
-            snackbar.timer("Contato salvo", 3000);
+                    // Array de números
+                    var numeros = [];
+
+                    // True do terceiro parametro identifica o número prioritário
+                    numeros[0] = new ContactField('Celular', $scope.empresa.telefone, true);
+
+                    contato.phoneNumbers = numeros;
+                    contato.save();
+
+                    // Exibir alerta
+                    snackbar.timer("Contato salvo", 3000);
+                }
+            }
         }
     }
 

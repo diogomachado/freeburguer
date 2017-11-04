@@ -14,12 +14,22 @@
 
         if (voltar){
 
+            // Faz o parse do JSON
             voltar = JSON.parse(voltar);
 
             $timeout(function(){
-                $cordovaDialogs.confirm("Você estava escolhendo seu pedido da última vez que saiu, deseja voltar a seleção?", "Deseja continuar...", ['Sim','Não'])
-                .then(function(buttonIndex) {
+
+                navigator.notification.confirm(
+                        'Você estava escolhendo seu pedido da última vez que saiu, deseja voltar a seleção?', // Mensagem
+                        callbackDismiss,         // Função de callback
+                        'Deseja continuar...',   // Título
+                        ['Sim','Não']            // Botões
+                );
+
+                function callbackDismiss(buttonIndex){
+
                     if (buttonIndex == 1){
+
                         encontrar(voltar.casa_id);
 
                         // TODO: Seleciona novamente os itens já selecionados antes
@@ -28,7 +38,8 @@
                         // Remove
                         localStorage.removeItem('freeburguer-back');
                     }
-                });
+                }
+
             }, 600);
         }
 
@@ -74,33 +85,45 @@
 
                     var empresa = snapshot.val();
 
+                    // Como uso pesquisa, ele vai retorna um objeto com 1 posição, preciso coleta essa key
                     var keys = Object.keys(empresa);
 
+                    // Redireciona usando a key
                     $location.path('cardapio/' + keys[0]);
 
                     // Guarda a ID da empresa em sessão
                     sessionStorage.setItem('freeburguer-id', codigo);
 
-                    $rootScope.carregar = false;
-
-                    $scope.$apply();
 
                 }else{
 
-                    $rootScope.carregar = false;
-                    $scope.$apply();
+                    // Vibra rápido
+                    navigator.vibrate(100);
 
-                    $cordovaVibration.vibrate(100);
-                    $cordovaDialogs.alert('Nenhuma empresa com esse ID.', 'Ops :(', 'Beleza')
-                    .then(function() {
-                      // callback success
-                    });
+                    // Alerta nativo
+                    navigator.notification.alert(
+                            'Nenhuma empresa com esse ID.', // Mensagem
+                            function(){}, // Função de callback
+                            'Ops :(',        // Título
+                            'Beleza'         // buttonName
+                    );
                 }
+
+                // Desliga carregamento
+                $rootScope.carregar = false;
+
+                $timeout(function(){
+                    $scope.$digest();
+                });
             });
         }
 
         this.pingar = function(){
+
+            // Coleta o elemento
             var element = document.querySelector('#ketchup');
+
+            // Adiciona classe para animar
             element.setAttribute("class", "pingar");
         }
     }

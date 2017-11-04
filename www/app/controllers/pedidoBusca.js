@@ -45,20 +45,27 @@
                     // Retira carregamento
                     $rootScope.carregar = false;
 
-                    // Para forçar o redirect
-                    $scope.$apply();
+                    $timeout(function(){
+                        $scope.$digest();
+                    });
 
                 }else{
 
+                    // Retira carregamento
                     $rootScope.carregar = false;
 
-                    $cordovaVibration.vibrate(100);
+                    // Vibra rápido
+                    navigator.vibrate(100);
 
-                    $cordovaDialogs.alert('Pedido não encontrado.', 'Ops :(', 'Ok')
-                    .then(function() {
-                      // callback success
-                    });
+                    // Alerta nativo
+                    navigator.notification.alert(
+                            'Pedido não encontrado.', // Mensagem
+                            function(){}, // Função de callback
+                            'Ops :(',        // Título
+                            'Ok'             // Botão
+                    );
                 }
+
             });
         }
     }
