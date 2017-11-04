@@ -5,9 +5,9 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$injector = ['$scope', '$rootScope', '$location', '$cordovaDialogs', '$timeout', '$cordovaVibration'];
+    HomeController.$injector = ['$scope', '$rootScope', '$location', '$timeout'];
 
-    function HomeController($scope, $rootScope, $location, $cordovaDialogs, $timeout, $cordovaVibration){
+    function HomeController($scope, $rootScope, $location, $timeout){
 
         // Se sabemos que ele saiu no meio de um pedido
         var voltar = localStorage.getItem('freeburguer-back');

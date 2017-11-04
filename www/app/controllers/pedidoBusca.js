@@ -5,9 +5,9 @@
         .module('app')
         .controller('PedidoBuscaController', PedidoBuscaController);
 
-    PedidoBuscaController.$injector = ['$scope', '$rootScope', '$location','$cordovaVibration', '$cordovaDialogs'];
+    PedidoBuscaController.$injector = ['$scope', '$rootScope', '$location'];
 
-    function PedidoBuscaController($scope, $rootScope, $location, $cordovaVibration, $cordovaDialogs){
+    function PedidoBuscaController($scope, $rootScope, $location){
 
         this.buscar = function(){
 

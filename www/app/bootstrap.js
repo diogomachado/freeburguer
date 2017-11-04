@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('app',['ngRoute', 'ngCordova', 'ngAnimate', 'firebase'])
+    angular.module('app',['ngRoute', 'ngAnimate', 'firebase'])
     .config(function($routeProvider)
     {
         $routeProvider
@@ -31,7 +31,7 @@
         })
         .otherwise ({ redirectTo: '/' });
     })
-    .run(function($rootScope, $location, $cordovaDialogs, $timeout){
+    .run(function($rootScope, $location, $timeout){
 
         // TODO: remover ao lançar
         $rootScope.device = 'android';

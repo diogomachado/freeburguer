@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
         <meta charset="UTF-8">
         <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *">
         <meta name="format-detection" content="telephone=no">
@@ -17,12 +8,6 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="assets/css/app.min.css">
         <title>Freeburguer</title>
-
-        <script>
-            window.onerror = function(error, file, line) {
-              alert(error + ", " + file + ", " + line);
-            }
-        </script>
     </head>
     <body ng-app="app">
 
@@ -50,8 +35,8 @@
 
         <!-- Dependencias -->
         <script src="cordova.js"></script>
-        <script src="bower_components/angular/angular.min.js"></script>
-        <script src="bower_components/firebase/firebase.js"></script>
+        <script src="assets/js/angular.min.js"></script>
+        <script src="assets/js/firebase.js"></script>
         <script>
           var config = {
             apiKey: "AIzaSyB1hfmmcipVzXuvisLLY96xV61SeLVnsy8",
@@ -62,11 +47,11 @@
           };
           firebase.initializeApp(config);
         </script>
-        <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
-        <script src="bower_components/angular-i18n/angular-locale_pt-br.js"></script>
-        <script src="bower_components/angular-route/angular-route.min.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-        <script src="bower_components/ngCordova/dist/ng-cordova.min.js"></script>
+        <script src="assets/js/angularfire.min.js"></script>
+        <script src="assets/js/angular-locale_pt-br.js"></script>
+        <script src="assets/js/angular-route.min.js"></script>
+        <script src="assets/js/angular-animate.min.js"></script>
+        <script src="assets/js/snackbar.js"></script>
         <script src="app/bootstrap.js"></script>
         <script src="app/controllers/home.js"></script>
         <script src="app/controllers/cardapio.js"></script>
@@ -74,8 +59,5 @@
         <script src="app/controllers/pedidoInfo.js"></script>
         <script src="app/directives/barFixed.js"></script>
         <script src="app/services/firebaseTool.js"></script>
-
-        <!--  Outros -->
-        <script src="assets/js/snackbar.js"></script>
     </body>
 </html>
