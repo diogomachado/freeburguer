@@ -68,16 +68,19 @@
         /**
           * Network status
           */
-        $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-            $rootScope.online = true;
-            console.log("Online");
-        });
+        document.addEventListener("online", onOnline, false);
+        document.addEventListener("offline", onOffline, false);
 
-        $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+        function onOnline() {
+            $rootScope.online = true;
+            $rootScope.$apply();
+        }
+
+        function onOffline() {
             $rootScope.online = false;
             $rootScope.alertaOnline = true;
-            console.log("Offline");
-        });
+            $rootScope.$apply();
+        }
 
         $rootScope.$watch('online', function(){
             if ($rootScope.online){
@@ -95,10 +98,15 @@
 
         $rootScope.sair = function(){
 
-            $cordovaDialogs.confirm("Tem certeza que deseja sair?", "Atenção", ['Sim','Não'])
-            .then(function(buttonIndex) {
+            navigator.notification.confirm(
+                    'Tem certeza que deseja sair?', // Mensagem
+                    callbackDismiss, // Função de callback
+                    'Atenção',       // Título
+                    ['Sim','Não']    // Botões
+            );
 
-                // 'OK' = 1, 'Cancel' = 2
+            function callbackDismiss(buttonIndex){
+
                 if (buttonIndex == 1){
 
                     var exp = /(cardapio)/ig;
@@ -119,10 +127,9 @@
                         localStorage.setItem('freeburguer-back', JSON.stringify(back));
                     }
 
-                    // Sai do app
                     navigator.app.exitApp();
                 }
-            });
+            }
         }
     });
 })();
