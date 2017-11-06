@@ -5,30 +5,57 @@
         .module('app')
         .controller('PedidoInfoController', PedidoInfoController);
 
-    PedidoInfoController.$injector = ['$scope', '$rootScope', '$timeout', '$routeParams', '$firebaseObject'];
+    PedidoInfoController.$injector = ['$scope', '$rootScope', '$timeout', '$routeParams', '$location'];
 
-    function PedidoInfoController($scope, $rootScope, $timeout, $routeParams, $firebaseObject){
+    function PedidoInfoController($scope, $rootScope, $timeout, $routeParams, $location){
 
         $rootScope.carregar = true;
 
         // Carrega o pedido
-        $scope.pedido = $firebaseObject(firebase.database().ref().child('pedidos/' + $routeParams.id_pedido));
+        var query = firebase.database().ref().child('pedidos/' + $routeParams.id_pedido);
 
-        // Assim que carregar do firebase
-        $scope.pedido.$loaded().then(function() {
+        query.on('value', function(snapshot){
 
-            $scope.total_pedido = 0;
+            if (snapshot.val()){
 
-            // Calcula o valor total do pedido
-            angular.forEach($scope.pedido.itens, function(item, key){
-                $scope.total_pedido += item.preco;
-            });
+                $scope.pedido = snapshot.val();
 
-            $scope.empresa = $firebaseObject(firebase.database().ref().child('empresas/' + $scope.pedido.empresa));
+                $scope.total_pedido = 0;
 
-            $scope.empresa.$loaded().then(function() {
-                $rootScope.carregar = false;
-            });
+                // Calcula o valor total do pedido
+                angular.forEach($scope.pedido.itens, function(item, key){
+                    $scope.total_pedido += item.preco;
+                });
+
+                // Carrega a empresa
+                firebase.database().ref().child('empresas/' + $scope.pedido.empresa).on('value', function(snapshot_e){
+
+                    if (snapshot_e.val()){
+
+                        // Retira carregamento visual
+                        $rootScope.carregar = false;
+                        $rootScope.$apply();
+
+                    }else{
+                        console.warn("Não encontramos a empresa!!!");
+                    }
+                });
+
+                $timeout(function(){
+                    $scope.$digest();
+                });
+
+            }else{
+
+                navigator.notification.alert(
+                    'Não encontramos o pedido, tente novamente!', // Mensagem
+                    callbackDismiss, // Função de callback
+                    'Atenção',       // Título
+                    'Entendi'        // Botões
+                );
+
+                $location.path('buscar-pedido');
+            }
         });
 
         this.cadastrarContato = function(){
@@ -36,8 +63,8 @@
             navigator.notification.confirm(
                 'Tem certeza que deseja cadastrar o contato no aparelho?', // Mensagem
                 callbackDismiss, // Função de callback
-                'Atenção',   // Título
-                ['Sim','Não']    // buttonName
+                'Atenção',       // Título
+                ['Sim','Não']    // Botões
             );
 
             function callbackDismiss(buttonIndex){
