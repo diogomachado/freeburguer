@@ -5,9 +5,9 @@
         .module('app')
         .controller('PedidoBuscaController', PedidoBuscaController);
 
-    PedidoBuscaController.$injector = ['$scope', '$rootScope', '$location'];
+    PedidoBuscaController.$injector = ['$scope', '$rootScope', '$location', '$timeout'];
 
-    function PedidoBuscaController($scope, $rootScope, $location){
+    function PedidoBuscaController($scope, $rootScope, $location, $timeout){
 
         this.buscar = function(){
 

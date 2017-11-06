@@ -34,18 +34,6 @@ button svg{
 }
 
 @font-face {
-    font-family: 'Rockwell-Bold';
-    src: url('../fonts/rockwell-bold-webfont.eot');
-    src: url('../fonts/rockwell-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/rockwell-bold-webfont.woff2') format('woff2'),
-         url('../fonts/rockwell-bold-webfont.woff') format('woff'),
-         url('../fonts/rockwell-bold-webfont.ttf') format('truetype'),
-         url('../fonts/rockwell-bold-webfont.svg#Rockwell-Bold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'Roboto-Regular';
     src: url('../fonts/roboto-regular-webfont.eot');
     src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -101,10 +89,14 @@ Tipografia
 }
 
 .content{
-    padding: 3%;
     display: flex;
     height: 100%;
 }
+
+.content-padded{
+    padding: 3%;
+}
+
 
 .content-center{
     justify-content: center;
@@ -340,6 +332,10 @@ Checkbox
     padding: 5% 0;
 }
 
+.titulo-secao.android{
+    font-family: 'Roboto-Bold';
+}
+
 .titulo-secao.ios{
     background: #F5F5F5;
     text-transform: uppercase;
@@ -380,7 +376,7 @@ Checkbox
 }
 
 .checkbox-info-preco{
-    margin: 0 0 2px 0;
+    margin: 5px 0 10px 0;
     font-size: 12px;
     color: #7CB184;
 }
@@ -442,7 +438,7 @@ Rodape
     bottom: 0;
     width: 100%;
     background: white;
-    box-shadow: 0 0 15px #ccc;
+    box-shadow: 0 0 15px #00000014;
     padding: 3%;
 }
 
@@ -486,15 +482,26 @@ Rodape
 /*
 Pedido info
 */
+.pedido-codigo-descricao{
+    font-size: 11px;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 25px 0 0 0;
+    color: #95989A;
+}
+
 .pedido-codigo{
     font-size: 36px;
     color: #95989A;
-    padding: 5% 0;
+    padding: 0 0 5% 0;
+}
+
+.pedido-botoes button:first-of-type{
+    border-top: 1px #d0d0d0 solid;
 }
 
 .pedido-botoes button{
-    box-shadow: 0 5px 11px -4px #b3b3b3;
-    display: inline-block;
+    display: inline-flex;
     width: 100%;
     text-align: left;
     border-radius: 2px;
@@ -502,13 +509,22 @@ Pedido info
     font-size: 0.85em;
     color: #747474;
     margin-bottom: 1.5%;
+    border-bottom: 1px #d0d0d0 solid;
+    vertical-align: middle;
+}
+
+.pedido-botoes button svg{
+  margin-right: 10px;
+  margin-left: 5px;
+  margin-top: -2px;
 }
 
 .pedido-botoes p{
-    font-size: 12px;
+    font-size: 11px;
     color: #CECECE;
     margin: 0;
     text-transform: uppercase;
+    font-family: 'Roboto-Bold';
 }
 
 .pedido-resumo{
