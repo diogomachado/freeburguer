@@ -85,9 +85,8 @@
                     pedido.itens   = $scope.itens;
 
                     // Cria um novo pedido
-                    var promisse = firebaseTool.create('/pedidos/', pedido);
-
-                    promisse.then(function(pedido_id){
+                    firebaseTool.create('/pedidos/', pedido)
+                    .then(function(pedido_id){
 
                         // Redireciona
                         $location.path('pedido-info/' + pedido_id);

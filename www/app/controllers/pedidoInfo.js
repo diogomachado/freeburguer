@@ -88,6 +88,20 @@
                 }
             }
         }
+
+        this.navegar = function(lat, lng){
+
+            var plataforma = device.platform;
+            plataforma     = plataforma.toLowerCase();
+
+            if (lat && lng){
+                if (plataforma == 'ios'){
+                    cordova.InAppBrowser.open('http://maps.apple.com/?ll='+lat+','+lng+'&q='+lat+','+lng, '_system');
+                }else{
+                    cordova.InAppBrowser.open('geo:' + lat +"," + lng + '?q='+ lat +"," + lng, '_system');
+                }
+            }
+        }
     }
 
 })();

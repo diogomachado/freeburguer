@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('app',['ngRoute', 'ngAnimate', 'firebase'])
+    angular.module('app',['ngRoute', 'ngAnimate'])
     .config(function($routeProvider)
     {
         $routeProvider
@@ -93,8 +93,25 @@
 
         // Rastreia a mudança de rota e coleta o path (ex: /pedido) do navegador
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
+
+            // Salva o caminho da URL
             $rootScope.path = $location.path();
+
+            // Se estivermos na home ou na página de buscar pedido, tiramos o StatusBar
+            if ($rootScope.path == "/" || $rootScope.path == "/buscar-pedido"){
+                $timeout(function(){
+                    StatusBar.hide();
+                }, 250);
+            }else{
+                $timeout(function(){
+                    StatusBar.show();
+                }, 250);
+            }
         });
+
+        $rootScope.ir = function(url){
+            $location.path(url);
+        }
 
         $rootScope.sair = function(){
 

@@ -22,7 +22,6 @@ Pinga gota de ketchup
 @keyframes pingar{
     55%{
         transform: translateY(10px);
-        
     }
     100%{
         transform: translateY(645px);

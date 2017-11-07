@@ -51,21 +51,22 @@
 
                 }else{
 
-                    // Retira carregamento
-                    $rootScope.carregar = false;
-
                     // Vibra rápido
                     navigator.vibrate(100);
 
                     // Alerta nativo
                     navigator.notification.alert(
                             'Pedido não encontrado.', // Mensagem
-                            function(){}, // Função de callback
+                            function(){
+
+                                // Retira carregamento
+                                $rootScope.carregar = false;
+                                $rootScope.$apply();
+                            },
                             'Ops :(',        // Título
                             'Ok'             // Botão
                     );
                 }
-
             });
         }
     }

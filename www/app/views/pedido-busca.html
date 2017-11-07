@@ -25,7 +25,7 @@
     </div>
 
     <div class="home-body">
-        <form ng-submit="PedidoBusca.buscar()">
+        <form name="formBuscar" ng-submit="PedidoBusca.buscar()">
             <input type="text" ng-model="codigo_pedido" placeholder="Código do pedido" maxlength="6" required>
             <button type="submit">
                 <svg>

@@ -7,7 +7,7 @@
     </section>
 
     <section class="buttons">
-        <button type="button" class="{{ device }}" ng-click="sair()">
+        <button type="button" class="{{ device }}" ng-click="ir('/buscar-pedido')">
             <i class="close"></i>
             <span class="text">Sair</span>
         </button>
@@ -28,7 +28,7 @@
             </div>
 
             <!-- Botões -->
-            <button type="button" ng-click="PedidoInfo.navegar()">
+            <button type="button" ng-click="PedidoInfo.navegar(-20.849006, -41.116703)">
                 <svg class="icon icon-map-android" ng-show="device == 'android'">
                     <use xlink:href="assets/img/icons-info.svg#icon-map-android"></use>
                 </svg>
