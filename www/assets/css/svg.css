@@ -1,3 +1,9 @@
+/*
+    Customizações necessárias para animar o SVG nas views:
+    > views/_svg-home.html
+    > views/_svg-pedido-busca.html
+*/
+
 .svg {
     text-align: center;
 }
@@ -7,9 +13,6 @@
     overflow: visible;
 }
 
-/*
-Pinga gota de ketchup
-*/
 #ketchup{
     display: none;
 }
@@ -28,14 +31,11 @@ Pinga gota de ketchup
     }
 }
 
-/*
-Aparece com o veiculo
-*/
 #svg-truck{
     opacity: 0;
     transform: translateX(-130%);
     animation: entrar 1s cubic-bezier(0.645, 0.045, 0.355, 1.000) both;
-    animation-delay: 200ms;
+    animation-delay: 600ms;
 }
 
 @keyframes entrar{

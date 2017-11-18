@@ -5,8 +5,10 @@
       * Definição do app AngularJS e suas rotas
       */
     angular.module('app',['ngRoute', 'ngAnimate'])
-    .config(function($routeProvider)
+    .config(function($routeProvider, $compileProvider)
     {
+        $compileProvider.debugInfoEnabled(false);
+
         $routeProvider
         // Página inicial
         .when('/', {
@@ -39,6 +41,7 @@
       */
     .run(function($rootScope, $location, $timeout, $window){
 
+        $rootScope.device = "android";
 
         /**
           * Evento que garante que o Cordova está carregado

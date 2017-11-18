@@ -1,17 +1,17 @@
 <header class="toolbar {{ device }} barFixed">
 
-    <section class="buttons"></section>
+    <section class="buttons">
+        <button type="button" class="{{ device }}" ng-click="ir('/buscar-pedido')">
+            <i class="icon-back"></i>
+            <span class="text">Voltar</span>
+        </button>
+    </section>
 
     <section class="title {{ device }}">
         Detalhes do pedido
     </section>
 
-    <section class="buttons">
-        <button type="button" class="{{ device }}" ng-click="ir('/buscar-pedido')">
-            <i class="close"></i>
-            <span class="text">Sair</span>
-        </button>
-    </section>
+    <section class="buttons"></section>
 
 </header>
 

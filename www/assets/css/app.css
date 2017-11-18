@@ -392,6 +392,11 @@ Home
     justify-content: center;
 }
 
+.home-body form{
+    display: inline-flex;
+    justify-content: center;
+}
+
 .footer{
     position: absolute;
     bottom: 0;
