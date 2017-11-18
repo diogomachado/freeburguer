@@ -1,6 +1,9 @@
 (function() {
     'use strict';
 
+    /**
+      * Definição do app AngularJS e suas rotas
+      */
     angular.module('app',['ngRoute', 'ngAnimate'])
     .config(function($routeProvider)
     {
@@ -31,39 +34,53 @@
         })
         .otherwise ({ redirectTo: '/' });
     })
+    /**
+      * Evento `run` garante que o AngularJS está carregado
+      */
     .run(function($rootScope, $location, $timeout, $window){
 
-        // TODO: remover ao lançar
-        $rootScope.device = 'android';
 
+        /**
+          * Evento que garante que o Cordova está carregado
+          */
         document.addEventListener("deviceready", function () {
 
-            // Identifica a plataforma (ios|android)
+            /**
+              * Identifica a plataforma (ios|android)
+              */
             var plataforma = device.platform;
             $rootScope.device = plataforma.toLowerCase();
 
             /**
-              * OneSignal
+              * (Pushnotication)
               */
-            // $timeout(function(){
+            $timeout(function(){
 
-            //     var abrirMensagem = function(jsonRetorno) {
+                /**
+                  * Callback de mensagem aberta
+                  */
+                var abrirMensagem = function(jsonRetorno) {
 
-            //         // Dados enviados pelo oneSignal
-            //         console.log(jsonRetorno);
+                    // Dados enviados pelo oneSignal
+                    console.log(jsonRetorno);
 
-            //         // jsonRetorno.notification.payload.additionalData.<CHAVE>
-            //     };
+                    // Exemplo
+                    console.info(jsonRetorno.notification.payload.additionalData);
+                };
 
-            //     window.plugins.OneSignal
-            //     .startInit("01fa3550-aa00-491d-a9bd-9e62a286501c")
-            //     .handleNotificationOpened(abrirMensagem)
-            //     .endInit();
+                /**
+                  * Faz o registro do aparelho
+                  */
+                window.plugins.OneSignal
+                .startInit("01fa3550-aa00-491d-a9bd-9e62a286501c")
+                .handleNotificationOpened(abrirMensagem)
+                .endInit();
 
-            // }, 1000);
+            }, 1000);
 
-
-            // Android | Evento de voltar
+            /**
+              * (Android): Atacando evento de voltar `backbutton`
+              */
             document.addEventListener("backbutton", function(){
 
                 if ($location.path() == '/'){
@@ -86,7 +103,7 @@
             }, false);
 
             /**
-              * Network status
+              * Atacando eventos de rede
               */
             document.addEventListener("online", function(){
                 $rootScope.online = true;
@@ -101,7 +118,9 @@
 
         }, false);
 
-
+        /**
+          * Observa a variavel `online`
+          */
         $rootScope.$watch('online', function(){
             if ($rootScope.online){
                 $rootScope.alertaOnline = true;
@@ -111,17 +130,25 @@
             }
         });
 
-        // Rastreia a mudança de rota e coleta o path (ex: /pedido) do navegador
+        /**
+          * Rastreia a mudança de rota e coleta o path do navegador
+          */
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
 
             // Salva o caminho da URL
             $rootScope.path = $location.path();
         });
 
+        /**
+          * Faz um redirecionamento
+          */
         $rootScope.ir = function(url){
             $location.path(url);
         }
 
+        /**
+          * Fecha o aplicativo
+          */
         $rootScope.sair = function(){
 
             navigator.notification.confirm(
@@ -140,7 +167,7 @@
 
                     if (location.search(exp) != -1){
 
-                        // Variavel de apoio
+                        // Variável de apoio
                         var back = {};
 
                         // Gravo a ID do firebase da casa de hamburgueres
