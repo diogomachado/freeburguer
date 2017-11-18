@@ -19,7 +19,9 @@ body {
     background: #FAFAFA;
 }
 
-/* Reseta os padrões de button */
+/*
+Reseta os padrões de button
+*/
 button{
     outline: none;
     border: 0;
@@ -88,21 +90,22 @@ Tipografia
     font-family: 'SF-UI-Display-Regular';
 }
 
+/*
+Disposicao de conteudo
+*/
+.content-padded{
+    padding: 3%;
+}
+
 .content{
     display: flex;
     height: 100%;
 }
 
-.content-padded{
-    padding: 3%;
-}
-
-
 .content-center{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    display: in;
 }
 
 /*
@@ -173,26 +176,6 @@ section.buttons{
 .title.ios{
     justify-content: center;
     padding: 0;
-}
-
-/*
-Customizacoes apenas da toolbar home
-*/
-.color-title-home{
-  color: #795548;
-}
-
-.color-button-home{
-    color: rgba(255,255,255,0.8);
-}
-
-.toolbar-home{
-    padding: 0 5%;
-}
-
-.toolbar-home .title{
-    font-family: 'Rockwell-Bold';
-    text-transform: uppercase;
 }
 
 /*
@@ -593,6 +576,10 @@ Transicoes
     transform: translateX(-100%);
     opacity: 0;
 }
+
+/*
+Animação extra
+*/
 
 .abrir-footer,
 .fechar-footer{

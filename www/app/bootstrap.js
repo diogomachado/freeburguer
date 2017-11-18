@@ -31,7 +31,7 @@
         })
         .otherwise ({ redirectTo: '/' });
     })
-    .run(function($rootScope, $location, $timeout){
+    .run(function($rootScope, $location, $timeout, $window){
 
         // TODO: remover ao lançar
         $rootScope.device = 'android';
@@ -45,42 +45,62 @@
             /**
               * OneSignal
               */
-            $timeout(function(){
+            // $timeout(function(){
 
-                var abrirMensagem = function(jsonRetorno) {
+            //     var abrirMensagem = function(jsonRetorno) {
 
-                    // Dados enviados pelo oneSignal
-                    console.log(jsonRetorno);
+            //         // Dados enviados pelo oneSignal
+            //         console.log(jsonRetorno);
 
-                    // jsonRetorno.notification.payload.additionalData.<CHAVE>
-                };
+            //         // jsonRetorno.notification.payload.additionalData.<CHAVE>
+            //     };
 
-                window.plugins.OneSignal
-                .startInit("01fa3550-aa00-491d-a9bd-9e62a286501c")
-                .handleNotificationOpened(abrirMensagem)
-                .endInit();
+            //     window.plugins.OneSignal
+            //     .startInit("01fa3550-aa00-491d-a9bd-9e62a286501c")
+            //     .handleNotificationOpened(abrirMensagem)
+            //     .endInit();
 
-            }, 1000);
+            // }, 1000);
+
+
+            // Android | Evento de voltar
+            document.addEventListener("backbutton", function(){
+
+                if ($location.path() == '/'){
+
+                    navigator.notification.confirm(
+                        'Deseja sair do aplicativo?',
+                        function(buttonIndex){
+                            if (buttonIndex == 1){
+                                navigator.app.exitApp();
+                            }
+                        },
+                        'Atenção',
+                        ['Sim','Não']
+                    );
+                }
+                else{
+                    $window.history.go(-1);
+                }
+
+            }, false);
+
+            /**
+              * Network status
+              */
+            document.addEventListener("online", function(){
+                $rootScope.online = true;
+                $rootScope.$apply();
+            }, false);
+
+            document.addEventListener("offline", function(){
+                $rootScope.online = false;
+                $rootScope.alertaOnline = true;
+                $rootScope.$apply();
+            }, false);
 
         }, false);
 
-
-        /**
-          * Network status
-          */
-        document.addEventListener("online", onOnline, false);
-        document.addEventListener("offline", onOffline, false);
-
-        function onOnline() {
-            $rootScope.online = true;
-            $rootScope.$apply();
-        }
-
-        function onOffline() {
-            $rootScope.online = false;
-            $rootScope.alertaOnline = true;
-            $rootScope.$apply();
-        }
 
         $rootScope.$watch('online', function(){
             if ($rootScope.online){
@@ -96,17 +116,6 @@
 
             // Salva o caminho da URL
             $rootScope.path = $location.path();
-
-            // Se estivermos na home ou na página de buscar pedido, tiramos o StatusBar
-            if ($rootScope.path == "/" || $rootScope.path == "/buscar-pedido"){
-                $timeout(function(){
-                    StatusBar.hide();
-                }, 250);
-            }else{
-                $timeout(function(){
-                    StatusBar.show();
-                }, 250);
-            }
         });
 
         $rootScope.ir = function(url){
