@@ -41,8 +41,6 @@
       */
     .run(function($rootScope, $location, $timeout, $window){
 
-        $rootScope.device = "android";
-
         /**
           * Evento que garante que o Cordova está carregado
           */

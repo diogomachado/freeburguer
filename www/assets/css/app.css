@@ -295,11 +295,11 @@ Checkbox
 }
 
 .checkbox-item input[type="checkbox"]:not(:checked) + span.android{
-    background: url(../img/check_box_blank.svg) no-repeat;
+    background: url(../img/checkbox-android-blank.svg) no-repeat;
 }
 
 .checkbox-item input[type="checkbox"]:checked + span.android{
-    background: url(../img/check_box.svg) no-repeat;
+    background: url(../img/checkbox-android.svg) no-repeat;
 }
 
 .checkbox-item input[type="checkbox"]:not(:checked) + span.ios{
