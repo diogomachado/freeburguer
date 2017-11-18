@@ -9,6 +9,9 @@
 
     function PedidoBuscaController($scope, $rootScope, $location, $timeout){
 
+        /**
+          * Executa a função de buscar no Firebase
+          */
         this.buscar = function(){
 
             // Exibe carregamento
@@ -18,7 +21,9 @@
             encontrar($scope.codigo_pedido);
         }
 
-        // Realiza a busca na plataforma Firebase
+        /**
+          * Realiza a busca na plataforma Firebase
+          */
         function encontrar(codigo){
 
             // Inicializa
@@ -63,8 +68,8 @@
                                 $rootScope.carregar = false;
                                 $rootScope.$apply();
                             },
-                            'Ops :(',        // Título
-                            'Ok'             // Botão
+                            'Ops :(', // Título
+                            'Ok'      // Botão
                     );
                 }
             });

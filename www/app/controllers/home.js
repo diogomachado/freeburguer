@@ -9,7 +9,9 @@
 
     function HomeController($scope, $rootScope, $location, $timeout){
 
-        // Se sabemos que ele saiu no meio de um pedido
+        /**
+          * Se sabemos que ele saiu no meio de um pedido
+          */
         var voltar = localStorage.getItem('freeburguer-back');
 
         if (voltar){
@@ -32,9 +34,6 @@
 
                         encontrar(voltar.casa_id);
 
-                        // TODO: Seleciona novamente os itens já selecionados antes
-                        // ...
-
                         // Remove
                         localStorage.removeItem('freeburguer-back');
                     }
@@ -43,7 +42,9 @@
             }, 600);
         }
 
-        // Faz a leitura do QRcode
+        /**
+          * Faz a leitura do QRcode
+          */
         this.scanear = function(){
 
             $rootScope.carregar = true;
@@ -58,7 +59,9 @@
             );
         }
 
-        // Faz a busca ao tocar no button buscar
+        /**
+          * Faz a busca ao tocar no button buscar
+          */
         this.buscar = function(){
 
             $rootScope.carregar = true;
@@ -66,7 +69,9 @@
             encontrar($scope.codigo_empresa);
         }
 
-        // Realiza a busca na plataforma Firebase
+        /**
+          * Realiza a busca na plataforma Firebase
+          */
         function encontrar(codigo){
 
             // Inicializa
@@ -118,6 +123,9 @@
             });
         }
 
+        /**
+          * Faz o SVG `pingar`
+          */
         this.pingar = function(){
 
             // Coleta o elemento

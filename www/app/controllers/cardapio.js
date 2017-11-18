@@ -12,14 +12,18 @@
         // Nos ajuda a controlar a view
         $scope.exibirResumoPedido = false;
 
-        // Carrega os produtos
+        /**
+          * Carrega os produtos armazenados no Firebase
+          */
         var db = firebase.database();
         var empresa = db.ref('empresas/' + $routeParams.id_empresa);
 
         empresa.on('value', function(snapshot){
 
+            // Se encontrou
             if (snapshot.val()){
 
+                // Coleta os valores
                 var empresa = snapshot.val();
 
                 if (empresa.produtos){
@@ -34,7 +38,9 @@
             }
         });
 
-        // Observa se usuário vai selecionar algum item, para exibir o rodapé
+        /**
+          * Observa se usuário vai selecionar algum item, para exibir o rodapé
+          */
         $scope.$watch('itens', function(){
 
             var selecionados = 0;
@@ -64,6 +70,9 @@
 
         }, true);
 
+        /**
+          * Faz o fechamento do pedido e cria um registro no Firebase
+          */
         this.fecharPedido = function(){
 
             navigator.notification.confirm(
@@ -98,6 +107,9 @@
             }
         }
 
+        /**
+          * Função de apoio para gerar ID
+          */
         function gerarID(){
             return 'P' + Math.random().toString(5).substr(2, 5);
         }

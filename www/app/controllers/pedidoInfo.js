@@ -9,6 +9,7 @@
 
     function PedidoInfoController($scope, $rootScope, $timeout, $routeParams, $location){
 
+        // Ativa o carregamento visual
         $rootScope.carregar = true;
 
         // Carrega o pedido
@@ -58,6 +59,9 @@
             }
         });
 
+        /**
+          * Faz a lógica para cadastrar um contato na agenda do aparelho
+          */
         this.cadastrarContato = function(){
 
             navigator.notification.confirm(
@@ -89,6 +93,9 @@
             }
         }
 
+        /**
+          * Abre o mapa `nativo` do celular
+          */
         this.navegar = function(lat, lng){
 
             var plataforma = device.platform;
