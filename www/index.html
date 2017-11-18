@@ -20,6 +20,7 @@
     </head>
     <body ng-app="app">
 
+        <!-- Componente de carregamento -->
         <div class="spinner-wrapper" ng-show="carregar">
             <div class="spinner">
                 <div class="double-bounce1"></div>
@@ -28,6 +29,8 @@
         </div>
 
         <div class="offline-alert" ng-show="alertaOnline" ng-cloak>
+
+            <!-- SVG -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.42 135.42">
                 <path class="tomada" ng-class="{'on' : online, 'off' : !online}" d="M68.59,96.53,87,78.14a4,4,0,0,0-5.66-5.66L62.93,90.87,44.55,72.49,62.93,54.1a4,4,0,1,0-5.66-5.66L38.89,66.83l-6.36-6.36L21.21,71.78a30,30,0,0,0-3.82,37.76L0,126.93l8.49,8.49L25.88,118a30,30,0,0,0,37.76-3.82L75,102.89Z" style="fill:#006697"/>
                 <path d="M102.89,75l11.31-11.31A30,30,0,0,0,118,25.88l17.4-17.4L126.93,0l-17.4,17.4a30,30,0,0,0-37.76,3.82L60.47,32.53Z" style="fill:#006697"/>
@@ -37,12 +40,13 @@
             <p ng-show="!online">Verifique sua conexão de dados</p>
         </div>
 
-        <!-- Div que será injetada com as Views -->
-        <div ng-view ng-class="{home: path === '/', slide: path !== '/', 'Roboto-Regular' : device == 'android', 'SF-UI-Display-Regular' : device == 'ios'}"></div>
+        <!-- Div que será injetada as Views -->
+        <div ng-view ng-class="{home: path === '/', slide: path !== '/', 'fonte-android' : device == 'android', 'fonte-ios' : device == 'ios'}"></div>
 
+        <!-- Marcação necessária para o snackbar -->
         <div class="snackbar"></div>
 
-        <!-- Dependencias -->
+        <!-- Dependências -->
         <script src="cordova.js"></script>
         <script src="assets/js/angular.min.js"></script>
         <script src="assets/js/firebase.js"></script>
@@ -60,6 +64,8 @@
         <script src="assets/js/angular-route.min.js"></script>
         <script src="assets/js/angular-animate.min.js"></script>
         <script src="assets/js/snackbar.js"></script>
+
+        <!-- App AngularJS -->
         <script src="app/bootstrap.js"></script>
         <script src="app/controllers/home.js"></script>
         <script src="app/controllers/cardapio.js"></script>

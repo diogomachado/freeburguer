@@ -4,17 +4,19 @@
             box-sizing: border-box;
 }
 
+/*
+No webkit, retira laranja do focus no link
+*/
 * {
-    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 body {
-    /* prevent callout to copy image, etc when tap to hold */
+    /* Desliga opção de copiar ao tocar no texto */
     -webkit-touch-callout: none;
-    /* prevent webkit from resizing text to fit */
+    /* Impede o webkit de redimensionar o texto */
     -webkit-text-size-adjust: none;
-    /* prevent copy paste, to allow, change 'none' to 'text' */
+    /* Evita selecionar o texto */
     -webkit-user-select: none;
     background: #FAFAFA;
 }
@@ -34,6 +36,10 @@ button svg{
   margin: 0;
   padding: 0;
 }
+
+/*
+Fontes
+*/
 
 @font-face {
     font-family: 'Roboto-Regular';
@@ -80,13 +86,13 @@ button svg{
 }
 
 /*
-Tipografia
+Classes tipograficas
 */
-.Roboto-Regular{
+.fonte-android{
     font-family: 'Roboto-Regular';
 }
 
-.SF-UI-Display-Regular{
+.fonte-ios{
     font-family: 'SF-UI-Display-Regular';
 }
 
@@ -163,11 +169,6 @@ section.buttons{
 .toolbar.android section.buttons:empty{
     display: none;
 }
-
-/* No android, quando a secao de botao anterior for vazia, retiro o padding*/
-/* .toolbar.android section.buttons:nth-child(1):empty + .title{
-    padding-left: 0;
-} */
 
 .toolbar.android section.buttons:nth-child(1) + .title{
     padding-left: 3%;
@@ -388,6 +389,7 @@ Home
 
 .home-body{
     display: inline-flex;
+    justify-content: center;
 }
 
 .footer{
@@ -531,7 +533,6 @@ Pedido info
 /*
 Transicoes
 */
-
 .home, .slide{
     position: fixed;
     left: 0;
@@ -663,9 +664,8 @@ Animação extra
 }
 
 /*
-Spinner
+Spinner de carregamento
 */
-
 .spinner-wrapper{
     position: fixed;
     top: 0;
